@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03EFB950204DBA0200E87D03 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EFB94F204DBA0200E87D03 /* SettingsTableViewController.swift */; };
 		D3113857204D56D200DF47AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3113856204D56D200DF47AF /* AppDelegate.swift */; };
 		D3113859204D56D200DF47AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3113858204D56D200DF47AF /* ViewController.swift */; };
 		D311385C204D56D200DF47AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D311385A204D56D200DF47AF /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03EFB94F204DBA0200E87D03 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		D3113853204D56D200DF47AF /* Readsome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Readsome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3113856204D56D200DF47AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3113858204D56D200DF47AF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				D3113856204D56D200DF47AF /* AppDelegate.swift */,
 				D3113858204D56D200DF47AF /* ViewController.swift */,
+				03EFB94F204DBA0200E87D03 /* SettingsTableViewController.swift */,
 				D311385A204D56D200DF47AF /* Main.storyboard */,
 				D3113860204D56D200DF47AF /* Assets.xcassets */,
 				D3113862204D56D200DF47AF /* LaunchScreen.storyboard */,
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03EFB950204DBA0200E87D03 /* SettingsTableViewController.swift in Sources */,
 				D3113859204D56D200DF47AF /* ViewController.swift in Sources */,
 				D311385F204D56D200DF47AF /* Readsome.xcdatamodeld in Sources */,
 				D3113857204D56D200DF47AF /* AppDelegate.swift in Sources */,
