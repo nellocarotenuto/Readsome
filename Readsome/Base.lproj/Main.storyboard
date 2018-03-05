@@ -162,7 +162,7 @@
         <!--View Controller-->
         <scene sceneID="FVA-IJ-bib">
             <objects>
-                <viewController id="feC-af-Gj3" sceneMemberID="viewController">
+                <viewController id="feC-af-Gj3" customClass="ViewController" customModule="Readsome" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Msy-7B-TIW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -171,10 +171,11 @@
                                 <rect key="frame" x="98" y="164" width="179" height="31"/>
                                 <connections>
                                     <action selector="TextSlider:" destination="bCL-Xk-17t" eventType="valueChanged" id="XFu-3i-Ufa"/>
+                                    <action selector="sliderValueChanged:" destination="feC-af-Gj3" eventType="valueChanged" id="bSC-RR-J3z"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjust text size in the app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hvT-Dh-l1f">
-                                <rect key="frame" x="10" y="84" width="265" height="21"/>
+                                <rect key="frame" x="89.5" y="114" width="196.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -182,21 +183,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="hvT-Dh-l1f" firstAttribute="leading" secondItem="um7-qi-Gvg" secondAttribute="leading" constant="10" id="Dog-gZ-ko0"/>
-                            <constraint firstItem="hvT-Dh-l1f" firstAttribute="top" secondItem="um7-qi-Gvg" secondAttribute="top" constant="20" id="Eqe-Cx-KIe"/>
+                            <constraint firstItem="hvT-Dh-l1f" firstAttribute="centerX" secondItem="Msy-7B-TIW" secondAttribute="centerX" id="2WA-pE-Nop"/>
                             <constraint firstItem="00W-R6-tQr" firstAttribute="centerX" secondItem="Msy-7B-TIW" secondAttribute="centerX" id="HwB-NN-YdK"/>
                             <constraint firstItem="00W-R6-tQr" firstAttribute="top" secondItem="um7-qi-Gvg" secondAttribute="top" constant="100" id="Tty-56-RKQ"/>
-                            <constraint firstItem="um7-qi-Gvg" firstAttribute="trailing" secondItem="hvT-Dh-l1f" secondAttribute="trailing" constant="100" id="cc1-jw-fpV"/>
                             <constraint firstItem="00W-R6-tQr" firstAttribute="leading" secondItem="um7-qi-Gvg" secondAttribute="leading" constant="100" id="ebh-Y8-Uaq"/>
                             <constraint firstItem="um7-qi-Gvg" firstAttribute="trailing" secondItem="00W-R6-tQr" secondAttribute="trailing" constant="100" id="kP6-p9-IqX"/>
+                            <constraint firstItem="hvT-Dh-l1f" firstAttribute="top" secondItem="um7-qi-Gvg" secondAttribute="top" constant="50" id="vEf-zr-ybs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="um7-qi-Gvg"/>
                     </view>
+                    <connections>
+                        <outlet property="slider" destination="00W-R6-tQr" id="dWX-Y7-euS"/>
+                        <outlet property="sliderValue" destination="hvT-Dh-l1f" id="0AH-GV-M7H"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lEz-Jp-abV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="bCL-Xk-17t" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1473" y="582"/>
+            <point key="canvasLocation" x="1472.8" y="580.65967016491754"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Q4A-Ka-iSU">
