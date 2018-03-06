@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		03EFB950204DBA0200E87D03 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EFB94F204DBA0200E87D03 /* SettingsTableViewController.swift */; };
 		D3113857204D56D200DF47AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3113856204D56D200DF47AF /* AppDelegate.swift */; };
-		D3113859204D56D200DF47AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3113858204D56D200DF47AF /* ViewController.swift */; };
 		D311385C204D56D200DF47AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D311385A204D56D200DF47AF /* Main.storyboard */; };
 		D311385F204D56D200DF47AF /* Readsome.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D311385D204D56D200DF47AF /* Readsome.xcdatamodeld */; };
 		D3113861204D56D200DF47AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3113860204D56D200DF47AF /* Assets.xcassets */; };
 		D3113864204D56D200DF47AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3113862204D56D200DF47AF /* LaunchScreen.storyboard */; };
 		D311386F204D56D200DF47AF /* ReadsomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D311386E204D56D200DF47AF /* ReadsomeTests.swift */; };
 		D311387A204D56D300DF47AF /* ReadsomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3113879204D56D300DF47AF /* ReadsomeUITests.swift */; };
+		D3B72081204EA2D500A6F00C /* TextAppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72080204EA2D500A6F00C /* TextAppearanceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,6 @@
 		03EFB94F204DBA0200E87D03 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		D3113853204D56D200DF47AF /* Readsome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Readsome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3113856204D56D200DF47AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D3113858204D56D200DF47AF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D311385B204D56D200DF47AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D311385E204D56D200DF47AF /* Readsome.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Readsome.xcdatamodel; sourceTree = "<group>"; };
 		D3113860204D56D200DF47AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +50,7 @@
 		D3113875204D56D300DF47AF /* ReadsomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReadsomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3113879204D56D300DF47AF /* ReadsomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadsomeUITests.swift; sourceTree = "<group>"; };
 		D311387B204D56D300DF47AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3B72080204EA2D500A6F00C /* TextAppearanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAppearanceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,13 +102,13 @@
 			isa = PBXGroup;
 			children = (
 				D3113856204D56D200DF47AF /* AppDelegate.swift */,
-				D3113858204D56D200DF47AF /* ViewController.swift */,
 				03EFB94F204DBA0200E87D03 /* SettingsTableViewController.swift */,
 				D311385A204D56D200DF47AF /* Main.storyboard */,
 				D3113860204D56D200DF47AF /* Assets.xcassets */,
 				D3113862204D56D200DF47AF /* LaunchScreen.storyboard */,
 				D3113865204D56D200DF47AF /* Info.plist */,
 				D311385D204D56D200DF47AF /* Readsome.xcdatamodeld */,
+				D3B72080204EA2D500A6F00C /* TextAppearanceController.swift */,
 			);
 			path = Readsome;
 			sourceTree = "<group>";
@@ -266,8 +266,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				03EFB950204DBA0200E87D03 /* SettingsTableViewController.swift in Sources */,
-				D3113859204D56D200DF47AF /* ViewController.swift in Sources */,
 				D311385F204D56D200DF47AF /* Readsome.xcdatamodeld in Sources */,
+				D3B72081204EA2D500A6F00C /* TextAppearanceController.swift in Sources */,
 				D3113857204D56D200DF47AF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
