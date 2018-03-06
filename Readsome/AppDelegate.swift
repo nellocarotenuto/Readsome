@@ -12,11 +12,26 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
+    var window : UIWindow?
+    let preferences = UserDefaults.standard
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Initialize text size
+        let textSize = preferences.float(forKey: "text-size")
+        
+        if textSize == 0 {
+            preferences.set(20, forKey: "text-size")
+        }
+        
+        
+        // Initialize the dictionary of letters
+        let letters = preferences.dictionary(forKey: "letters")
+        
+        if letters == nil {
+            preferences.set([String : NSData](), forKey : "letters")
+        }
+        
+        
         return true
     }
 

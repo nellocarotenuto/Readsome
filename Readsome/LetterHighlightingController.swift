@@ -1,15 +1,17 @@
 //
-//  SettingsTableViewController.swift
+//  LetterHighlightingController.swift
 //  Readsome
 //
-//  Created by Russo Rosa on 05/03/18.
+//  Created by Nello Carotenuto on 06/03/18.
 //  Copyright © 2018 Readsome. All rights reserved.
 //
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController {
+class LetterHighlightingController: UITableViewController {
 
+    let preferences = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,30 +24,37 @@ class SettingsTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        // Get the dictionary and count the entries inside it
+        let letters = preferences.dictionary(forKey: "letters") as! [String : NSData]
+        
+        return letters.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        // Get the cell as a custom one
+        let cell = tableView.dequeueReusableCell(withIdentifier: "letterHighlightedCell", for: indexPath) as! LetterHighlightingCell
 
-        // Configure the cell...
+        // Get the dictionary of letters and extract the saved letter-color pairs
+        let letters = preferences.dictionary(forKey: "letters") as! [String : NSData]
+        let letter = Array(letters.keys)[indexPath.row]
+        let letterColor = NSKeyedUnarchiver.unarchiveObject(with : letters[letter]! as Data) as? UIColor
 
+        // Set the text and the color into the cell
+        cell.letterLabel.text = letter
+        cell.colorLabel.backgroundColor = letterColor
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
