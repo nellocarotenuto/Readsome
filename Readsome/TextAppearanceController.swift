@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ActionSheetPicker_3_0
 
 class TextAppearanceController: UITableViewController {
 
@@ -23,8 +24,11 @@ class TextAppearanceController: UITableViewController {
     // Represents the UISlider used to adjust the spacing between the letters
     @IBOutlet weak var letterSpacingSlider: UISlider!
     
-    // Represents the UISlider usednto adjust the spacing between lines
+    // Represents the UISlider used to adjust the spacing between lines
     @IBOutlet weak var lineSpacingSlider: UISlider!
+    
+    // Represents the UISwitch used to make the text bold
+    @IBOutlet weak var boldSwitch: UISwitch!
     
     
     override func viewDidLoad() {
@@ -34,6 +38,9 @@ class TextAppearanceController: UITableViewController {
         textSizeSlider.value = preferences.float(forKey: "text-size")
         letterSpacingSlider.value = preferences.float(forKey: "letter-spacing")
         lineSpacingSlider.value = preferences.float(forKey: "line-spacing")
+        
+        // Setting the switch status to represent the user's preference
+        boldSwitch.setOn(preferences.bool(forKey: "font-bold"), animated: false)
         
         updateSampleText()
     }
@@ -54,7 +61,16 @@ class TextAppearanceController: UITableViewController {
         //preferences.string(forKey: "font-family")
         let fontSize = preferences.float(forKey: "text-size")
         
-        let font = UIFont(name: fontName, size: CGFloat(fontSize))
+        let font : UIFont
+        if preferences.bool(forKey: "font-bold") {
+            var descriptor = UIFontDescriptor(name : fontName, size : CGFloat(fontSize))
+            descriptor = descriptor.withSymbolicTraits(.traitBold)!
+            
+            font = UIFont(descriptor : descriptor, size: CGFloat(fontSize))
+        } else {
+            font = UIFont(name: fontName, size: CGFloat(fontSize))!
+        }
+        
         attributes[.font] = font
         
         // Setting the spacing between letters
@@ -66,6 +82,7 @@ class TextAppearanceController: UITableViewController {
         let paragraph = NSMutableParagraphStyle()
         paragraph.lineSpacing = CGFloat(preferences.float(forKey: "line-spacing"))
         attributes[.paragraphStyle] = paragraph
+        
         
         // Actually update the TextView
         let sampleText = NSMutableAttributedString(string : sampleTextView.text, attributes : attributes)
@@ -93,6 +110,13 @@ class TextAppearanceController: UITableViewController {
         preferences.set(lineSpacing, forKey : "line-spacing")
         updateSampleText()
     }
+    
+    @IBAction func weightChanged(_ sender: UISwitch) {
+        preferences.set(sender.isOn, forKey: "font-bold")
+        updateSampleText()
+    }
+    
+    
     
     
 }
