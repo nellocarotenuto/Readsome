@@ -24,6 +24,10 @@
 		D311387A204D56D300DF47AF /* ReadsomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3113879204D56D300DF47AF /* ReadsomeUITests.swift */; };
 		D33BB75820500DC10046C8CF /* TextHighlightingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BB75720500DC10046C8CF /* TextHighlightingController.swift */; };
 		D33BB75A205036770046C8CF /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BB759205036770046C8CF /* UIColor.swift */; };
+		D3B64AE32051AB66004A58BB /* OpenDyslexic-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D3B64AD92051A829004A58BB /* OpenDyslexic-Bold.otf */; };
+		D3B64AE42051AB66004A58BB /* OpenDyslexic-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D3B64ADA2051A82B004A58BB /* OpenDyslexic-Regular.otf */; };
+		D3B64AE52051AB66004A58BB /* TestMeAlt02-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D3B64ADB2051A82E004A58BB /* TestMeAlt02-Bold.otf */; };
+		D3B64AE62051AB66004A58BB /* TestMeAlt02-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D3B64ADC2051A831004A58BB /* TestMeAlt02-Regular.otf */; };
 		D3B72081204EA2D500A6F00C /* TextAppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72080204EA2D500A6F00C /* TextAppearanceController.swift */; };
 		D3B72083204EFF8A00A6F00C /* LetterHighlightingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72082204EFF8A00A6F00C /* LetterHighlightingController.swift */; };
 		D3B72085204F043E00A6F00C /* LetterHighlightingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72084204F043E00A6F00C /* LetterHighlightingCell.swift */; };
@@ -76,6 +80,10 @@
 		D311387B204D56D300DF47AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D33BB75720500DC10046C8CF /* TextHighlightingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHighlightingController.swift; sourceTree = "<group>"; };
 		D33BB759205036770046C8CF /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		D3B64AD92051A829004A58BB /* OpenDyslexic-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenDyslexic-Bold.otf"; sourceTree = "<group>"; };
+		D3B64ADA2051A82B004A58BB /* OpenDyslexic-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenDyslexic-Regular.otf"; sourceTree = "<group>"; };
+		D3B64ADB2051A82E004A58BB /* TestMeAlt02-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TestMeAlt02-Bold.otf"; sourceTree = "<group>"; };
+		D3B64ADC2051A831004A58BB /* TestMeAlt02-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TestMeAlt02-Regular.otf"; sourceTree = "<group>"; };
 		D3B72080204EA2D500A6F00C /* TextAppearanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAppearanceController.swift; sourceTree = "<group>"; };
 		D3B72082204EFF8A00A6F00C /* LetterHighlightingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterHighlightingController.swift; sourceTree = "<group>"; };
 		D3B72084204F043E00A6F00C /* LetterHighlightingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterHighlightingCell.swift; sourceTree = "<group>"; };
@@ -143,6 +151,10 @@
 		D311384A204D56D200DF47AF = {
 			isa = PBXGroup;
 			children = (
+				D3B64AD92051A829004A58BB /* OpenDyslexic-Bold.otf */,
+				D3B64ADA2051A82B004A58BB /* OpenDyslexic-Regular.otf */,
+				D3B64ADB2051A82E004A58BB /* TestMeAlt02-Bold.otf */,
+				D3B64ADC2051A831004A58BB /* TestMeAlt02-Regular.otf */,
 				D3113855204D56D200DF47AF /* Readsome */,
 				D311386D204D56D200DF47AF /* ReadsomeTests */,
 				D3113878204D56D300DF47AF /* ReadsomeUITests */,
@@ -317,6 +329,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3B64AE32051AB66004A58BB /* OpenDyslexic-Bold.otf in Resources */,
+				D3B64AE42051AB66004A58BB /* OpenDyslexic-Regular.otf in Resources */,
+				D3B64AE52051AB66004A58BB /* TestMeAlt02-Bold.otf in Resources */,
+				D3B64AE62051AB66004A58BB /* TestMeAlt02-Regular.otf in Resources */,
 				D3113864204D56D200DF47AF /* LaunchScreen.storyboard in Resources */,
 				6379DD70205177C300D6FA7C /* tessdata in Resources */,
 				D3113861204D56D200DF47AF /* Assets.xcassets in Resources */,

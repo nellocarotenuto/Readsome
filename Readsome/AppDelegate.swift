@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let preferences = UserDefaults.standard
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        if preferences.string(forKey: "font-family") == nil {
+            self.preferences.set("Times New Roman", forKey: "font-family")
+        }
+        
         // Initialize text size
         let textSize = preferences.float(forKey: "text-size")
         

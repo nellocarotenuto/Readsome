@@ -30,6 +30,8 @@ class TextAppearanceController: UITableViewController {
     // Represents the UISwitch used to make the text bold
     @IBOutlet weak var boldSwitch: UISwitch!
     
+    // Represents the cell that triggers the font family picker
+    @IBOutlet weak var fontFamilyCell: UITableViewCell!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,9 +58,7 @@ class TextAppearanceController: UITableViewController {
         var attributes = [NSAttributedStringKey : Any]()
         
         // Setting the family and the size of the font
-        let fontName = "Times New Roman"
-        
-        //preferences.string(forKey: "font-family")
+        let fontName = preferences.string(forKey: "font-family")!
         let fontSize = preferences.float(forKey: "text-size")
         
         let font : UIFont
@@ -116,7 +116,34 @@ class TextAppearanceController: UITableViewController {
         updateSampleText()
     }
     
-    
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 5 && indexPath.row == 0 {
+            let pickerTitle = NSLocalizedString("Font", comment: "Title for the font-family picker used inside text appearance preferences")
+            
+            let selectedFont = preferences.string(forKey: "font-family")!
+            let availableFonts = ["Helvetica Neue", "OpenDyslexic", "Times New Roman", "TestMeAlt02"]
+            
+            ActionSheetMultipleStringPicker.show(withTitle : pickerTitle, rows : [
+                availableFonts,
+                ], initialSelection: [availableFonts.index(of: selectedFont)!], doneBlock: {
+                    picker, indexes, values in
+                    
+                    let values = values as! [String]
+                    let selectedFont = values[0]
+                    
+                    self.preferences.set(selectedFont, forKey: "font-family")
+                    
+                    self.updateSampleText()
+                    
+                    return
+            }, cancel: {
+                _ in
+                
+                return
+            }, origin: fontFamilyCell)
+            
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
     
 }
