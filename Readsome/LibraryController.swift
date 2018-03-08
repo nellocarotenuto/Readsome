@@ -19,7 +19,7 @@ class LibraryController: UITableViewController, UIImagePickerControllerDelegate,
         
 //        TODO NSLOCALIZEDSTRING
         
-        let imagePickerActionSheet = UIAlertController(title: "Upload a photo from...", message: nil, preferredStyle: .actionSheet)
+        let imagePickerActionSheet = UIAlertController(title: "Upload a photo from...", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
         //        TODO NSLOCALIZEDSTRING
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -46,6 +46,12 @@ class LibraryController: UITableViewController, UIImagePickerControllerDelegate,
         imagePickerActionSheet.addAction(cancelButton)
         imagePickerActionSheet.view.layoutIfNeeded()
         //It displays the action sheet to the user after tapping the PHOTO CAMERA button in navigation bar
+        
+        
+        if let popoverController = imagePickerActionSheet.popoverPresentationController {
+            popoverController.barButtonItem = sender as? UIBarButtonItem
+        }
+        
         present(imagePickerActionSheet, animated: true, completion: nil)
         
     }
@@ -65,11 +71,10 @@ class LibraryController: UITableViewController, UIImagePickerControllerDelegate,
         //        let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
         //        photoUmageView.image = selectedPhoto
         if let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage {
-//            photoUmageView.contentMode = .scaleAspectFit
-//            photoImageView.image = selectedPhoto
+            
             picker.dismiss(animated: true, completion : {
                 
-                let recognizedText = self.performImageRecognition((selectedPhoto))
+                let recognizedText = self.performImageRecognition(selectedPhoto)
                 
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let editController = storyBoard.instantiateViewController(withIdentifier: "editController") as! EditController
@@ -84,9 +89,21 @@ class LibraryController: UITableViewController, UIImagePickerControllerDelegate,
         }
         
         if let selectedPhoto = info[UIImagePickerControllerEditedImage] as? UIImage {
-//            photoUmageView.contentMode = .scaleAspectFit
-//            photoImageView.image = selectedPhoto
-            picker.dismiss(animated: true, completion:{self.performImageRecognition((selectedPhoto))})
+            picker.dismiss(animated: true, completion:{
+            
+                let recognizedText = self.performImageRecognition(selectedPhoto)
+                
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let editController = storyBoard.instantiateViewController(withIdentifier: "editController") as! EditController
+                
+                
+                
+                editController.selectedImage = selectedPhoto
+                editController.scannedText = recognizedText
+                
+                self.navigationController?.pushViewController(editController, animated: true)
+            
+            })
         }
     }
     

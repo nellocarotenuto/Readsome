@@ -32,6 +32,7 @@ class EditController: UITableViewController {
         }
         
         if let selectedImage = selectedImage {
+            imageView.contentMode = .scaleAspectFill
             imageView.image = selectedImage
         }
     }
