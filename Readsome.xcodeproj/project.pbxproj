@@ -14,6 +14,8 @@
 		D3113864204D56D200DF47AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3113862204D56D200DF47AF /* LaunchScreen.storyboard */; };
 		D311386F204D56D200DF47AF /* ReadsomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D311386E204D56D200DF47AF /* ReadsomeTests.swift */; };
 		D311387A204D56D300DF47AF /* ReadsomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3113879204D56D300DF47AF /* ReadsomeUITests.swift */; };
+		D33BB75820500DC10046C8CF /* TextHighlightingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BB75720500DC10046C8CF /* TextHighlightingController.swift */; };
+		D33BB75A205036770046C8CF /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BB759205036770046C8CF /* UIColor.swift */; };
 		D3B72081204EA2D500A6F00C /* TextAppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72080204EA2D500A6F00C /* TextAppearanceController.swift */; };
 		D3B72083204EFF8A00A6F00C /* LetterHighlightingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72082204EFF8A00A6F00C /* LetterHighlightingController.swift */; };
 		D3B72085204F043E00A6F00C /* LetterHighlightingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72084204F043E00A6F00C /* LetterHighlightingCell.swift */; };
@@ -50,6 +52,8 @@
 		D3113875204D56D300DF47AF /* ReadsomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReadsomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3113879204D56D300DF47AF /* ReadsomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadsomeUITests.swift; sourceTree = "<group>"; };
 		D311387B204D56D300DF47AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D33BB75720500DC10046C8CF /* TextHighlightingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHighlightingController.swift; sourceTree = "<group>"; };
+		D33BB759205036770046C8CF /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		D3B72080204EA2D500A6F00C /* TextAppearanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAppearanceController.swift; sourceTree = "<group>"; };
 		D3B72082204EFF8A00A6F00C /* LetterHighlightingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterHighlightingController.swift; sourceTree = "<group>"; };
 		D3B72084204F043E00A6F00C /* LetterHighlightingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterHighlightingCell.swift; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 				D3B72080204EA2D500A6F00C /* TextAppearanceController.swift */,
 				D3B72082204EFF8A00A6F00C /* LetterHighlightingController.swift */,
 				D3B72084204F043E00A6F00C /* LetterHighlightingCell.swift */,
+				D33BB75720500DC10046C8CF /* TextHighlightingController.swift */,
+				D33BB759205036770046C8CF /* UIColor.swift */,
 			);
 			path = Readsome;
 			sourceTree = "<group>";
@@ -269,9 +275,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3B72083204EFF8A00A6F00C /* LetterHighlightingController.swift in Sources */,
+				D33BB75A205036770046C8CF /* UIColor.swift in Sources */,
 				D311385F204D56D200DF47AF /* Readsome.xcdatamodeld in Sources */,
 				D3B72085204F043E00A6F00C /* LetterHighlightingCell.swift in Sources */,
 				D3B72081204EA2D500A6F00C /* TextAppearanceController.swift in Sources */,
+				D33BB75820500DC10046C8CF /* TextHighlightingController.swift in Sources */,
 				D3113857204D56D200DF47AF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

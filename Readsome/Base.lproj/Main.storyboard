@@ -52,7 +52,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Letter highlighting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52M-I9-LMq">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text highlighting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52M-I9-LMq">
                                                     <rect key="frame" x="36" y="11.333333333333336" width="316" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -351,15 +351,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="letterHighlightedCell" id="gJN-nq-T76" customClass="LetterHighlightingCell" customModule="Readsome" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="letterHighlightedCell" id="gJN-nq-T76" customClass="LetterHighlightingCell" customModule="Readsome" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.333333333333336" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gJN-nq-T76" id="aHj-lz-uz8">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tvb-rm-LdA">
-                                            <rect key="frame" x="382" y="14" width="16" height="16"/>
+                                            <rect key="frame" x="344" y="14" width="16" height="16"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="0AS-h5-Hzl"/>
@@ -376,7 +376,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOp-Cg-R4Y">
-                                            <rect key="frame" x="36" y="11.333333333333336" width="330" height="21"/>
+                                            <rect key="frame" x="36" y="11.333333333333336" width="292" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -393,6 +393,7 @@
                                 <connections>
                                     <outlet property="colorLabel" destination="Tvb-rm-LdA" id="xwR-HJ-657"/>
                                     <outlet property="letterLabel" destination="nOp-Cg-R4Y" id="xZ4-1m-nQQ"/>
+                                    <segue destination="EUf-Oo-zdQ" kind="show" identifier="editHighlightedLetter" id="xNM-H6-rBw"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="7de-7U-aM8">
@@ -411,12 +412,283 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Letter highlighting" id="Imv-UA-kiY">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mZ0-iZ-mho"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mZ0-iZ-mho">
+                            <connections>
+                                <segue destination="EUf-Oo-zdQ" kind="show" id="Csk-p6-4rS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c2w-AV-ert" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2062" y="346"/>
+        </scene>
+        <!--Add focusing-->
+        <scene sceneID="cVk-zr-qtQ">
+            <objects>
+                <tableViewController title="Add focusing" id="EUf-Oo-zdQ" customClass="TextHighlightingController" customModule="Readsome" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Nhr-x3-qva">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Text" id="5gc-oF-MzS">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="3Hm-8I-47d">
+                                        <rect key="frame" x="0.0" y="55.333333333333336" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Hm-8I-47d" id="mj0-O8-HGS">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ix-7q-Mxe">
+                                                    <rect key="frame" x="16" y="16" width="382" height="11.666666666666664"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textChanged:" destination="EUf-Oo-zdQ" eventType="editingChanged" id="2ey-VD-bC1"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6ix-7q-Mxe" firstAttribute="leading" secondItem="mj0-O8-HGS" secondAttribute="leading" constant="16" id="CoL-St-t5j"/>
+                                                <constraint firstAttribute="trailing" secondItem="6ix-7q-Mxe" secondAttribute="trailing" constant="16" id="c9V-4p-bry"/>
+                                                <constraint firstAttribute="bottom" secondItem="6ix-7q-Mxe" secondAttribute="bottom" constant="16" id="hIe-Wo-MCP"/>
+                                                <constraint firstItem="6ix-7q-Mxe" firstAttribute="top" secondItem="mj0-O8-HGS" secondAttribute="top" constant="16" id="obE-ST-qes"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Color" id="FfQ-0V-Gf1">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="120" id="1Bh-CK-jI6">
+                                        <rect key="frame" x="0.0" y="155.33333333333334" width="414" height="120"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1Bh-CK-jI6" id="QRa-ip-Ji6">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="119.66666666666667"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="UhW-0c-84D">
+                                                    <rect key="frame" x="16" y="16" width="382" height="36"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIH-VO-4Qa">
+                                                            <rect key="frame" x="0.0" y="0.0" width="83.666666666666671" height="36"/>
+                                                            <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="36" id="hUb-uQ-CaZ"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <state key="normal">
+                                                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBound" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="6"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="colorChanged:" destination="EUf-Oo-zdQ" eventType="touchUpInside" id="m4E-sh-u2R"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUr-W2-WNI">
+                                                            <rect key="frame" x="99.666666666666686" y="0.0" width="83.333333333333314" height="36"/>
+                                                            <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="36" id="idq-F8-hhE"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <state key="normal">
+                                                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBound" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="6"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="colorChanged:" destination="EUf-Oo-zdQ" eventType="touchUpInside" id="X3H-6g-VoE"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udL-Yt-I3q">
+                                                            <rect key="frame" x="199" y="0.0" width="83.666666666666686" height="36"/>
+                                                            <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="36" id="G3Y-an-gGx"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <state key="normal">
+                                                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBound" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="6"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="colorChanged:" destination="EUf-Oo-zdQ" eventType="touchUpInside" id="eMq-sa-pzF"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iCx-gt-ZXf">
+                                                            <rect key="frame" x="298.66666666666669" y="0.0" width="83.333333333333314" height="36"/>
+                                                            <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="36" id="v3V-1g-CGG"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <state key="normal">
+                                                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBound" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="6"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="colorChanged:" destination="EUf-Oo-zdQ" eventType="touchUpInside" id="UzI-l1-UIL"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="Nby-AT-rj5"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0RI-GP-Ndv">
+                                                    <rect key="frame" x="16" y="68" width="382" height="36"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s3e-NB-Rs2">
+                                                            <rect key="frame" x="0.0" y="0.0" width="83.666666666666671" height="36"/>
+                                                            <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="36" id="aKz-dP-uOl"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <state key="normal">
+                                                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBound" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="6"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="colorChanged:" destination="EUf-Oo-zdQ" eventType="touchUpInside" id="yzj-wu-sTJ"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1nD-lR-yxl">
+                                                            <rect key="frame" x="99.666666666666686" y="0.0" width="83.333333333333314" height="36"/>
+                                                            <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="36" id="ZZM-4V-yPJ"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <state key="normal">
+                                                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBound" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="6"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="colorChanged:" destination="EUf-Oo-zdQ" eventType="touchUpInside" id="Wkr-a6-IwU"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IQw-2x-LmI">
+                                                            <rect key="frame" x="199" y="0.0" width="83.666666666666686" height="36"/>
+                                                            <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="36" id="ePP-6D-GTF"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <state key="normal">
+                                                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBound" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="6"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="colorChanged:" destination="EUf-Oo-zdQ" eventType="touchUpInside" id="Z4v-Vs-KFy"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ICa-fz-xsa">
+                                                            <rect key="frame" x="298.66666666666669" y="0.0" width="83.333333333333314" height="36"/>
+                                                            <color key="backgroundColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="36" id="9pa-gH-VH9"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <state key="normal">
+                                                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBound" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="6"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="colorChanged:" destination="EUf-Oo-zdQ" eventType="touchUpInside" id="2NF-ce-zrg"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="FyM-eM-UDi"/>
+                                                        <constraint firstAttribute="height" constant="36" id="uUY-tr-cE9"/>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="36" id="yJB-59-cdK"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0RI-GP-Ndv" firstAttribute="leading" secondItem="QRa-ip-Ji6" secondAttribute="leading" constant="16" id="36L-T2-7D5"/>
+                                                <constraint firstItem="UhW-0c-84D" firstAttribute="leading" secondItem="QRa-ip-Ji6" secondAttribute="leading" constant="16" id="5w2-7u-IFm"/>
+                                                <constraint firstItem="0RI-GP-Ndv" firstAttribute="top" secondItem="QRa-ip-Ji6" secondAttribute="top" constant="68" id="SSh-rO-NSq"/>
+                                                <constraint firstAttribute="trailing" secondItem="UhW-0c-84D" secondAttribute="trailing" constant="16" id="bvR-IZ-me8"/>
+                                                <constraint firstItem="UhW-0c-84D" firstAttribute="top" secondItem="QRa-ip-Ji6" secondAttribute="top" constant="16" id="cTZ-Oe-4ea"/>
+                                                <constraint firstAttribute="trailing" secondItem="0RI-GP-Ndv" secondAttribute="trailing" constant="16" id="cmg-uS-56t"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="EUf-Oo-zdQ" id="bm2-EF-Nur"/>
+                            <outlet property="delegate" destination="EUf-Oo-zdQ" id="CQn-nY-QtN"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="7aJ-NP-WRY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="uQt-Hd-YmK">
+                            <connections>
+                                <action selector="textWillBeSaved:" destination="EUf-Oo-zdQ" id="tBU-oq-xek"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="blueButton" destination="1nD-lR-yxl" id="pVb-vt-xZi"/>
+                        <outlet property="cyanButton" destination="s3e-NB-Rs2" id="Fvd-CF-uim"/>
+                        <outlet property="greenButton" destination="iCx-gt-ZXf" id="wxT-qq-YbP"/>
+                        <outlet property="magentaButton" destination="ICa-fz-xsa" id="7aB-nb-bLk"/>
+                        <outlet property="orangeButton" destination="YUr-W2-WNI" id="CJg-gp-qfC"/>
+                        <outlet property="purpleButton" destination="IQw-2x-LmI" id="P0W-W9-v8k"/>
+                        <outlet property="redButton" destination="aIH-VO-4Qa" id="2T8-ar-12M"/>
+                        <outlet property="textField" destination="6ix-7q-Mxe" id="Kfd-bk-5PS"/>
+                        <outlet property="yellowButton" destination="udL-Yt-I3q" id="VBZ-dx-BUw"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WYe-re-gTu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3121.739130434783" y="283.69565217391306"/>
         </scene>
         <!--Item-->
         <scene sceneID="JSJ-pL-zSb">
@@ -456,4 +728,7 @@
             <point key="canvasLocation" x="-396" y="345"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Csk-p6-4rS"/>
+    </inferredMetricsTieBreakers>
 </document>

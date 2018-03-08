@@ -49,7 +49,9 @@ class TextAppearanceController: UITableViewController {
         var attributes = [NSAttributedStringKey : Any]()
         
         // Setting the family and the size of the font
-        let fontName = "Times New Roman" //preferences.string(forKey: "font-family")
+        let fontName = "Times New Roman"
+        
+        //preferences.string(forKey: "font-family")
         let fontSize = preferences.float(forKey: "text-size")
         
         let font = UIFont(name: fontName, size: CGFloat(fontSize))
