@@ -8,23 +8,20 @@
 
 import UIKit
 
-class LetterHighlightingCell: UITableViewCell {
+class LetterHighlightingCell : UITableViewCell {
 
     // Represents the label used to display the selected letter
-    @IBOutlet weak var letterLabel: UILabel!
+    @IBOutlet weak var letterLabel : UILabel!
     
     // Represents the label used to make the colored dot next to the letter
-    @IBOutlet weak var colorLabel: UILabel!
+    @IBOutlet weak var colorLabel : UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    override func setSelected(_ selected : Bool, animated : Bool) {
+        super.setSelected(selected, animated : animated)
     }
 
 }

@@ -8,22 +8,7 @@
 
 import UIKit
 
-extension UIViewController {
-    func hideKeyboard() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: #selector(UIViewController.dismissKeyboard))
-        
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-}
-
-class EditController: UITableViewController {
+class EditController : UITableViewController {
 
     @IBOutlet weak var scannedTextView: UITextView!
     @IBOutlet weak var titleTextField: UITextField!
@@ -35,12 +20,6 @@ class EditController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
         if let scannedText = scannedText {
             scannedTextView.text = scannedText
         }
@@ -50,12 +29,12 @@ class EditController: UITableViewController {
             imageView.image = selectedImage
         }
         
+        // Hide the keyboard when tapping outside the field
         self.hideKeyboard()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }

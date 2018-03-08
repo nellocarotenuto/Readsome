@@ -306,6 +306,7 @@
                                             <subviews>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="16" maxValue="62" translatesAutoresizingMaskIntoConstraints="NO" id="xS4-AW-IH1">
                                                     <rect key="frame" x="66" y="11" width="892" height="31"/>
+                                                    <color key="tintColor" red="0.73725490196078436" green="0.086274509803921567" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <action selector="textSizeChanged:" destination="klJ-s9-cbw" eventType="valueChanged" id="HNJ-C4-b95"/>
                                                     </connections>
@@ -354,6 +355,7 @@
                                             <subviews>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1.1499999999999999" minValue="-6" maxValue="16" translatesAutoresizingMaskIntoConstraints="NO" id="l62-e1-gdB">
                                                     <rect key="frame" x="66" y="11" width="892" height="31"/>
+                                                    <color key="tintColor" red="0.73725490199999999" green="0.086274509799999996" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <action selector="letterSpacingChanged:" destination="klJ-s9-cbw" eventType="valueChanged" id="O7N-av-XCS"/>
                                                     </connections>
@@ -468,6 +470,7 @@
                                                 </stackView>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="-10" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="xuK-bV-a7A">
                                                     <rect key="frame" x="70" y="11" width="888" height="31"/>
+                                                    <color key="tintColor" red="0.73725490199999999" green="0.086274509799999996" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <action selector="lineSpacingChanged:" destination="klJ-s9-cbw" eventType="valueChanged" id="NaE-Mv-Qxx"/>
                                                     </connections>
@@ -957,4 +960,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="Csk-p6-4rS"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.73725490199999999" green="0.086274509799999996" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

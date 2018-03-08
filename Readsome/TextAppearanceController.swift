@@ -33,6 +33,7 @@ class TextAppearanceController: UITableViewController {
     // Represents the cell that triggers the font family picker
     @IBOutlet weak var fontFamilyCell: UITableViewCell!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,8 +50,6 @@ class TextAppearanceController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
-        // Dispose of any resources that can be recreated.
     }
 
     
@@ -72,6 +71,7 @@ class TextAppearanceController: UITableViewController {
         }
         
         attributes[.font] = font
+        
         
         // Setting the spacing between letters
         let letterSpacing = preferences.float(forKey: "letter-spacing")
@@ -117,31 +117,63 @@ class TextAppearanceController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // CAREFUL: we've statically defined the cells, 5.0 is the font selection related one
         if indexPath.section == 5 && indexPath.row == 0 {
+            // Define the title that will be shown in the newly-created picker
             let pickerTitle = NSLocalizedString("Font", comment: "Title for the font-family picker used inside text appearance preferences")
             
+            // Get the preferred font from user defaults
             let selectedFont = preferences.string(forKey: "font-family")!
+            
+            // Define the list of available fonts
             let availableFonts = ["Helvetica Neue", "OpenDyslexic", "Times New Roman", "TestMeAlt02"]
             
-            ActionSheetMultipleStringPicker.show(withTitle : pickerTitle, rows : [
-                availableFonts,
-                ], initialSelection: [availableFonts.index(of: selectedFont)!], doneBlock: {
+            // Build the actual picker
+            let actionSheetPicker = ActionSheetMultipleStringPicker(
+                // Set the title
+                title : pickerTitle,
+                
+                // Set the items inside the picker
+                rows : [availableFonts],
+                
+                // Set the selected item
+                initialSelection: [availableFonts.index(of: selectedFont)!],
+                
+                // Define what to do when the user taps "done"
+                doneBlock: {
                     picker, indexes, values in
                     
+                    // Get the selected item as a font name
                     let values = values as! [String]
                     let selectedFont = values[0]
                     
+                    // Save the user preference
                     self.preferences.set(selectedFont, forKey: "font-family")
                     
+                    // Update the sample text
                     self.updateSampleText()
                     
                     return
-            }, cancel: {
+            },
+            
+            // Define what to do when the user taps "cancel"
+            cancel: {
                 _ in
                 
                 return
-            }, origin: fontFamilyCell)
+            },
             
+            // Define the sender
+            origin: fontFamilyCell)
+            
+            
+            // Set the color of both "Cancel" and "Done" to our tint
+            actionSheetPicker?.toolbarButtonsColor = view.tintColor
+            
+            // Actually show the picker
+            actionSheetPicker?.show()
+            
+            // Don't forget to deselect the hit row
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }

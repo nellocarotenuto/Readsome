@@ -8,18 +8,12 @@
 
 import UIKit
 
-class LetterHighlightingController: UITableViewController {
+class LetterHighlightingController : UITableViewController {
 
     let preferences = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,24 +21,24 @@ class LetterHighlightingController: UITableViewController {
     }
 
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView : UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView : UITableView, numberOfRowsInSection section : Int) -> Int {
         // Get the dictionary and count the entries inside it
-        let letters = preferences.dictionary(forKey: "letters") as! [String : NSData]
+        let letters = preferences.dictionary(forKey : "letters") as! [String : NSData]
         
         return letters.count
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView : UITableView, cellForRowAt indexPath : IndexPath) -> UITableViewCell {
         // Get the cell as a custom one
-        let cell = tableView.dequeueReusableCell(withIdentifier: "letterHighlightedCell", for: indexPath) as! LetterHighlightingCell
+        let cell = tableView.dequeueReusableCell(withIdentifier : "letterHighlightedCell", for : indexPath) as! LetterHighlightingCell
 
         // Get the dictionary of letters and extract the saved letter-color pairs
-        let letters = preferences.dictionary(forKey: "letters") as! [String : NSData]
+        let letters = preferences.dictionary(forKey : "letters") as! [String : NSData]
         let letter = Array(letters.keys)[indexPath.row]
         let letterColor = NSKeyedUnarchiver.unarchiveObject(with : letters[letter]! as Data) as? UIColor
 
@@ -54,67 +48,42 @@ class LetterHighlightingController: UITableViewController {
         
         return cell
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
 
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView : UITableView, commit editingStyle : UITableViewCellEditingStyle, forRowAt indexPath : IndexPath) {
         if editingStyle == .delete {
-            var letters = preferences.dictionary(forKey: "letters") as! [String : NSData]
+            var letters = preferences.dictionary(forKey : "letters") as! [String : NSData]
             
             let letter = Array(letters.keys)[indexPath.row]
             letters.removeValue(forKey: letter)
             preferences.set(letters, forKey: "letters")
             
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.deleteRows(at : [indexPath], with : .fade)
         }
     }
     
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     
     // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue : UIStoryboardSegue, sender : Any?) {
         let index = tableView.indexPathForSelectedRow?.row
         let letters = preferences.dictionary(forKey: "letters") as! [String : Data]
         
         if let segueIdentifier = segue.identifier {
             switch segueIdentifier {
-            case "editHighlightedLetter" :
-                let letter = Array(letters.keys)[index!]
-                let destination = segue.destination as! TextHighlightingController
-                destination.textToHighlight = letter
-                destination.selectedColor = NSKeyedUnarchiver.unarchiveObject(with : letters[letter]!) as? UIColor
-            default:
-                break
+                case "editHighlightedLetter" :
+                    let letter = Array(letters.keys)[index!]
+                    let destination = segue.destination as! TextHighlightingController
+                    destination.textToHighlight = letter
+                    destination.selectedColor = NSKeyedUnarchiver.unarchiveObject(with : letters[letter]!) as? UIColor
+                default:
+                    break
             }
             
         }
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated : Bool) {
         tableView.reloadData()
     }
 

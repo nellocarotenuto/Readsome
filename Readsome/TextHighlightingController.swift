@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TextHighlightingController : UITableViewController {
+class TextHighlightingController  : UITableViewController {
 
     let preferences = UserDefaults.standard
 
@@ -56,7 +56,7 @@ class TextHighlightingController : UITableViewController {
         sender.backgroundColor = selectedColorDarken
     }
 
-    @IBAction func textChanged(_ sender: UITextField) {
+    @IBAction func textChanged(_ sender : UITextField) {
         // Set the text to highlight to the one inside the text view
         textToHighlight = sender.text
     }
@@ -94,6 +94,9 @@ class TextHighlightingController : UITableViewController {
                 default : break
             }
         }
+        
+        // Hide the keyboard when tapping outside the field
+        self.hideKeyboard()
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,8 +121,8 @@ class TextHighlightingController : UITableViewController {
             // Get back to the previous screen
             self.navigationController?.popViewController(animated : true)
         } else {
-            let title = NSLocalizedString("Incomplete fields", comment: "String used for the alert dialog shown when the user tries to add a text to highlight without setting either text or color")
-            let message = NSLocalizedString("You have to select both text and color.", comment: "String presented in the alert dialog shown when the user tries to add a text to highlight without setting either text or color")
+            let title = NSLocalizedString("Incomplete fields", comment : "String used for the alert dialog shown when the user tries to add a text to highlight without setting either text or color")
+            let message = NSLocalizedString("You have to select both text and color.", comment : "String presented in the alert dialog shown when the user tries to add a text to highlight without setting either text or color")
             
             // Set an "OK" action for the dialog
             let alert = UIAlertController(title : title, message : message, preferredStyle : .alert)
