@@ -10,6 +10,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
 pod 'ActionSheetPicker-3.0'
+pod 'TesseractOCRiOS', '4.0.0'
 
   target 'ReadsomeTests' do
     inherit! :search_paths

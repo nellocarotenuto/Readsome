@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6379DD70205177C300D6FA7C /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 6379DD6F205177C200D6FA7C /* tessdata */; };
+		6379DD722051780200D6FA7C /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6379DD712051780200D6FA7C /* libstdc++.6.0.9.tbd */; };
+		6379DD742051780B00D6FA7C /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6379DD732051780B00D6FA7C /* CoreImage.framework */; };
+		6379DD752051781500D6FA7C /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6379DD762051781500D6FA7C /* TesseractOCR.framework */; };
 		7374CFC19B36D481C6B9191A /* Pods_Readsome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5C65387E8E040A2666DFB0 /* Pods_Readsome.framework */; };
 		BDC6F853FE9C9865BD260E65 /* Pods_ReadsomeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C22E048330E92A745F7771 /* Pods_ReadsomeUITests.framework */; };
 		D3113857204D56D200DF47AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3113856204D56D200DF47AF /* AppDelegate.swift */; };
@@ -44,6 +48,10 @@
 /* Begin PBXFileReference section */
 		1A5EAC65B80E1117132DB106 /* Pods-Readsome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Readsome.release.xcconfig"; path = "Pods/Target Support Files/Pods-Readsome/Pods-Readsome.release.xcconfig"; sourceTree = "<group>"; };
 		41C40D68DC2F2CF534730B08 /* Pods-ReadsomeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadsomeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReadsomeTests/Pods-ReadsomeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6379DD6F205177C200D6FA7C /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		6379DD712051780200D6FA7C /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		6379DD732051780B00D6FA7C /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		6379DD762051781500D6FA7C /* TesseractOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82E44719498EB3066EE543DC /* Pods-ReadsomeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadsomeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReadsomeTests/Pods-ReadsomeTests.release.xcconfig"; sourceTree = "<group>"; };
 		A9BB21CFBA135987DFE0946E /* Pods-ReadsomeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadsomeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReadsomeUITests/Pods-ReadsomeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BC32574FBB018C01F75E6A18 /* Pods-Readsome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Readsome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Readsome/Pods-Readsome.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,6 +84,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6379DD752051781500D6FA7C /* TesseractOCR.framework in Frameworks */,
+				6379DD742051780B00D6FA7C /* CoreImage.framework in Frameworks */,
+				6379DD722051780200D6FA7C /* libstdc++.6.0.9.tbd in Frameworks */,
 				7374CFC19B36D481C6B9191A /* Pods_Readsome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,6 +126,9 @@
 		4FAB19C833F367806E0D025D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6379DD762051781500D6FA7C /* TesseractOCR.framework */,
+				6379DD732051780B00D6FA7C /* CoreImage.framework */,
+				6379DD712051780200D6FA7C /* libstdc++.6.0.9.tbd */,
 				DC5C65387E8E040A2666DFB0 /* Pods_Readsome.framework */,
 				D0703719165AB25B73FE98A9 /* Pods_ReadsomeTests.framework */,
 				F4C22E048330E92A745F7771 /* Pods_ReadsomeUITests.framework */,
@@ -157,6 +171,7 @@
 				D3B72082204EFF8A00A6F00C /* LetterHighlightingController.swift */,
 				D3B72084204F043E00A6F00C /* LetterHighlightingCell.swift */,
 				D33BB75720500DC10046C8CF /* TextHighlightingController.swift */,
+				6379DD6F205177C200D6FA7C /* tessdata */,
 				D33BB759205036770046C8CF /* UIColor.swift */,
 			);
 			path = Readsome;
@@ -297,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3113864204D56D200DF47AF /* LaunchScreen.storyboard in Resources */,
+				6379DD70205177C300D6FA7C /* tessdata in Resources */,
 				D3113861204D56D200DF47AF /* Assets.xcassets in Resources */,
 				D311385C204D56D200DF47AF /* Main.storyboard in Resources */,
 			);
@@ -360,10 +376,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Readsome/Pods-Readsome-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
+				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -566,6 +584,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -623,6 +642,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -647,7 +667,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 35SDB2P5QM;
+				DEVELOPMENT_TEAM = K8WJKQA676;
 				INFOPLIST_FILE = Readsome/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = it.unisa.diem.Readsome;
@@ -663,7 +683,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 35SDB2P5QM;
+				DEVELOPMENT_TEAM = K8WJKQA676;
 				INFOPLIST_FILE = Readsome/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = it.unisa.diem.Readsome;
