@@ -8,16 +8,16 @@
 
 import UIKit
 
-class ReaderController: UIViewController {
+class ReaderController : UIViewController {
 
     // Represents the user's settings
     let preferences = UserDefaults.standard
     
     // Represents the text view where to display the scanned text
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textView : UITextView!
     
     // Represents the button used to trigger the text to speech
-    @IBOutlet weak var textToSpeechButton: UIBarButtonItem!
+    @IBOutlet weak var textToSpeechButton : UIBarButtonItem!
     
     // Represents the scanned text to display
     var scannedText : ScannedText?
@@ -32,29 +32,29 @@ class ReaderController: UIViewController {
         var attributes = [NSAttributedStringKey : Any]()
         
         // Setting the family and the size of the font
-        let fontName = preferences.string(forKey: "font-family")!
-        let fontSize = preferences.float(forKey: "text-size")
+        let fontName = preferences.string(forKey : "font-family")!
+        let fontSize = preferences.float(forKey : "text-size")
         
         let font : UIFont
-        if preferences.bool(forKey: "font-bold") {
+        if preferences.bool(forKey : "font-bold") {
             var descriptor = UIFontDescriptor(name : fontName, size : CGFloat(fontSize))
             descriptor = descriptor.withSymbolicTraits(.traitBold)!
             
-            font = UIFont(descriptor : descriptor, size: CGFloat(fontSize))
+            font = UIFont(descriptor : descriptor, size : CGFloat(fontSize))
         } else {
-            font = UIFont(name: fontName, size: CGFloat(fontSize))!
+            font = UIFont(name : fontName, size : CGFloat(fontSize))!
         }
         
         attributes[.font] = font
         
         // Setting the spacing between letters
-        let letterSpacing = preferences.float(forKey: "letter-spacing")
+        let letterSpacing = preferences.float(forKey : "letter-spacing")
         attributes[.kern] = letterSpacing
         
         
         // Setting the spacing between lines
         let paragraph = NSMutableParagraphStyle()
-        paragraph.lineSpacing = CGFloat(preferences.float(forKey: "line-spacing"))
+        paragraph.lineSpacing = CGFloat(preferences.float(forKey : "line-spacing"))
         attributes[.paragraphStyle] = paragraph
         
         let attributedString = NSMutableAttributedString(string : scannedText!.text!, attributes : attributes)

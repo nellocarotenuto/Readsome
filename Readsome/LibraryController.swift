@@ -129,12 +129,8 @@ class LibraryController : UITableViewController, UIImagePickerControllerDelegate
     }
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Get the data from the storage
-        scannedTexts = ScannedTextManager.loadAll()
     }
 
     override func didReceiveMemoryWarning() {
@@ -155,13 +151,13 @@ class LibraryController : UITableViewController, UIImagePickerControllerDelegate
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Get the scanned text to display
-        let scannedText = scannedTexts![indexPath.row]
+        let scannedText = ScannedTextManager.load(by : indexPath.row)
         
         // Get the delegated cell and cast it to a LibraryCell
         let cell = tableView.dequeueReusableCell(withIdentifier : "libraryCell", for : indexPath) as! LibraryCell
 
         // Set the label and the image to what's inside the scanned text to display
-        cell.scannedImage.image = NSKeyedUnarchiver.unarchiveObject(with: scannedText.image! as Data) as? UIImage
+        cell.scannedImage.image = UIImage(data: scannedText.image! as Data)
         cell.titleLabel.text = scannedText.title
 
         return cell
@@ -179,41 +175,21 @@ class LibraryController : UITableViewController, UIImagePickerControllerDelegate
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            ScannedTextManager.delete(by : indexPath.row)
+            
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
-
-    /*
+    
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+        ScannedTextManager.move(from : fromIndexPath.row, to : to.row)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     
     // MARK: - Navigation
@@ -223,12 +199,11 @@ class LibraryController : UITableViewController, UIImagePickerControllerDelegate
         if segue.identifier == "showScannedText" {
             let destination = segue.destination as! ReaderController
             
-            destination.scannedText = scannedTexts?[(tableView.indexPathForSelectedRow?.row)!]
+            destination.scannedText = ScannedTextManager.load(by : (tableView.indexPathForSelectedRow?.row)!)
         }
         
         
     }
-    
     
 
     override func viewWillAppear(_ animated: Bool) {

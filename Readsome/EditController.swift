@@ -52,7 +52,7 @@ class EditController : UITableViewController, UITextFieldDelegate, G8TesseractDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        titleTextField.delegate = self as? UITextFieldDelegate
+        titleTextField.delegate = self
         titleTextField.returnKeyType = .done
     }
     
@@ -110,7 +110,7 @@ class EditController : UITableViewController, UITextFieldDelegate, G8TesseractDe
     
     func processImage(inputImage: UIImage) -> UIImage {
         
-        var processedImage = inputImage
+        let processedImage = inputImage
         
         let medianFilter = MedianFilter()
         var filteredImage = processedImage.filterWithOperation(medianFilter)
