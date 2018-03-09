@@ -11,6 +11,7 @@ import TesseractOCR
 import Photos
 import AVFoundation
 import CoreImage
+import GPUImage
 
 
 class LibraryController : UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, G8TesseractDelegate {
