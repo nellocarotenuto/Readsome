@@ -85,22 +85,28 @@ class EditController : UITableViewController, UITextFieldDelegate, G8TesseractDe
 
     func performImageRecognition(_ image: UIImage) {
         
-        let imagePreProcessed = self.processImage(inputImage: image)
         
         let tesseract = G8Tesseract(language: "eng", engineMode: .tesseractOnly)
         tesseract?.delegate = self
         
-        // tesseract.engineMode = .tesseractCubeCombined
+        let imageTemp = image.g8_blackAndWhite()
         
+        
+        let imagePreProcessed = self.processImage(inputImage: imageTemp!)
+        
+        // tesseract.engineMode = .tesseractCubeCombined
+        tesseract?.image = imagePreProcessed
         tesseract?.pageSegmentationMode = G8PageSegmentationMode(rawValue: 1)!
-        tesseract?.image = imagePreProcessed.g8_blackAndWhite()
         tesseract?.recognize()
         
         var text = tesseract?.recognizedText
         text = text?.components(separatedBy: NSCharacterSet.newlines).filter(){$0 != ""}.joined(separator: "\n")
         
-//      Touching the UI in the main thread
+        //      Touching the UI in the main thread
         DispatchQueue.main.sync {
+//            This instruction show the pre processed image in the imageView
+//            self.imageView.image = imagePreProcessed
+            
             activityIndicator.isHidden = true
             activityIndicator.stopAnimating()
             self.scannedTextView.text = text
@@ -110,10 +116,15 @@ class EditController : UITableViewController, UITextFieldDelegate, G8TesseractDe
     
     func processImage(inputImage: UIImage) -> UIImage {
         
-        let processedImage = inputImage
+        var processedImage = inputImage
+        
+        let gaussianBlur = GaussianBlur()
+        gaussianBlur.blurRadiusInPixels = 2.0
+        var filteredImage = processedImage.filterWithOperation(gaussianBlur)
         
         let medianFilter = MedianFilter()
-        var filteredImage = processedImage.filterWithOperation(medianFilter)
+        filteredImage = filteredImage.filterWithOperation(medianFilter)
+        
         let thresholdFilter = AdaptiveThreshold()
         thresholdFilter.blurRadiusInPixels = 2.0
         filteredImage = filteredImage.filterWithOperation(thresholdFilter)
