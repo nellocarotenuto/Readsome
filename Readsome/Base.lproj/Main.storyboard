@@ -193,12 +193,17 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                                 </textView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Dwd-sU-7Hd">
+                                                    <rect key="frame" x="150" y="80" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="RsC-QN-uwM" firstAttribute="leading" secondItem="FRG-dx-Ci4" secondAttribute="leading" constant="16" id="3dr-li-8Ks"/>
                                                 <constraint firstAttribute="bottom" secondItem="RsC-QN-uwM" secondAttribute="bottom" id="ZZ0-MP-WJZ"/>
                                                 <constraint firstAttribute="trailing" secondItem="RsC-QN-uwM" secondAttribute="trailing" constant="16" id="aKm-lU-yPn"/>
                                                 <constraint firstItem="RsC-QN-uwM" firstAttribute="top" secondItem="FRG-dx-Ci4" secondAttribute="top" id="cxb-sP-lcC"/>
+                                                <constraint firstItem="Dwd-sU-7Hd" firstAttribute="centerX" secondItem="FRG-dx-Ci4" secondAttribute="centerX" id="da1-bX-c9R"/>
+                                                <constraint firstItem="Dwd-sU-7Hd" firstAttribute="centerY" secondItem="FRG-dx-Ci4" secondAttribute="centerY" id="kou-6Y-Awb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -211,6 +216,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="activityIndicator" destination="Dwd-sU-7Hd" id="KnU-Pm-h4t"/>
                         <outlet property="imageView" destination="Qfy-J1-fHu" id="CoC-4r-YNy"/>
                         <outlet property="scannedTextView" destination="RsC-QN-uwM" id="K4P-un-ZAZ"/>
                         <outlet property="titleTextField" destination="jHq-Dm-KH0" id="rqx-VO-Yly"/>
@@ -1027,4 +1033,3 @@
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.73725490199999999" green="0.086274509799999996" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
-

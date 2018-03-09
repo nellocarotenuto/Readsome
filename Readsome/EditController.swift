@@ -15,14 +15,21 @@ class EditController : UITableViewController, UITextFieldDelegate, G8TesseractDe
     @IBOutlet weak var scannedTextView: UITextView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var selectedImage : UIImage?
     var scannedText : String?
     
     override func viewDidAppear(_ animated: Bool) {
-    
-        self.performImageRecognition(selectedImage!)
-    
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        self.imageView.contentMode = .scaleAspectFill
+        self.imageView.image = self.selectedImage
+//      Create a new concurrent thread to perform the Image Recognition
+        let concurrentQueue = DispatchQueue(label: "imageRecognition", attributes: .concurrent)
+        concurrentQueue.async {
+            self.performImageRecognition(self.selectedImage!)
+        }
     }
     
     override func viewDidLoad() {
@@ -75,9 +82,8 @@ class EditController : UITableViewController, UITextFieldDelegate, G8TesseractDe
         }
     }
     
-    
-    
-    func performImageRecognition(_ image: UIImage) -> Void{
+
+    func performImageRecognition(_ image: UIImage) {
         
         let imagePreProcessed = self.processImage(inputImage: image)
         
@@ -93,8 +99,12 @@ class EditController : UITableViewController, UITextFieldDelegate, G8TesseractDe
         var text = tesseract?.recognizedText
         text = text?.components(separatedBy: NSCharacterSet.newlines).filter(){$0 != ""}.joined(separator: "\n")
         
-        self.scannedTextView.text = text
-    
+//      Touching the UI in the main thread
+        DispatchQueue.main.sync {
+            activityIndicator.isHidden = true
+            activityIndicator.stopAnimating()
+            self.scannedTextView.text = text
+        }
     }
     
     
@@ -107,8 +117,7 @@ class EditController : UITableViewController, UITextFieldDelegate, G8TesseractDe
         let thresholdFilter = AdaptiveThreshold()
         thresholdFilter.blurRadiusInPixels = 2.0
         filteredImage = filteredImage.filterWithOperation(thresholdFilter)
-        imageView.contentMode = .scaleAspectFill
-        imageView.image = selectedImage
+        
         return filteredImage
     }
     
