@@ -38,6 +38,7 @@
 		D3B72081204EA2D500A6F00C /* TextAppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72080204EA2D500A6F00C /* TextAppearanceController.swift */; };
 		D3B72083204EFF8A00A6F00C /* LetterHighlightingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72082204EFF8A00A6F00C /* LetterHighlightingController.swift */; };
 		D3B72085204F043E00A6F00C /* LetterHighlightingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72084204F043E00A6F00C /* LetterHighlightingCell.swift */; };
+		D3D3DCE22052EEBC00BCA1BD /* StringProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3DCDE2052EEBC00BCA1BD /* StringProtocol.swift */; };
 		D3E2BF452052AB7200EFEADD /* ReaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E2BF442052AB7200EFEADD /* ReaderController.swift */; };
 		FD17F39E4B5A1C5623353697 /* Pods_ReadsomeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0703719165AB25B73FE98A9 /* Pods_ReadsomeTests.framework */; };
 /* End PBXBuildFile section */
@@ -149,6 +150,7 @@
 		D3B72080204EA2D500A6F00C /* TextAppearanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAppearanceController.swift; sourceTree = "<group>"; };
 		D3B72082204EFF8A00A6F00C /* LetterHighlightingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterHighlightingController.swift; sourceTree = "<group>"; };
 		D3B72084204F043E00A6F00C /* LetterHighlightingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterHighlightingCell.swift; sourceTree = "<group>"; };
+		D3D3DCDE2052EEBC00BCA1BD /* StringProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringProtocol.swift; sourceTree = "<group>"; };
 		D3E2BF442052AB7200EFEADD /* ReaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderController.swift; sourceTree = "<group>"; };
 		DC5C65387E8E040A2666DFB0 /* Pods_Readsome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Readsome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4C22E048330E92A745F7771 /* Pods_ReadsomeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReadsomeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -271,6 +273,7 @@
 				6379DD7920518CC100D6FA7C /* EditController.swift */,
 				D3B64AE72051E07C004A58BB /* UIViewController.swift */,
 				D3B64AFD2051F8F9004A58BB /* ScannedTextManager.swift */,
+				D3D3DCDE2052EEBC00BCA1BD /* StringProtocol.swift */,
 				D3B64AFF2051FE2D004A58BB /* LibraryCell.swift */,
 				D3E2BF442052AB7200EFEADD /* ReaderController.swift */,
 			);
@@ -642,6 +645,7 @@
 				D33BB75A205036770046C8CF /* UIColor.swift in Sources */,
 				D311385F204D56D200DF47AF /* Readsome.xcdatamodeld in Sources */,
 				D3B64AE82051E07C004A58BB /* UIViewController.swift in Sources */,
+				D3D3DCE22052EEBC00BCA1BD /* StringProtocol.swift in Sources */,
 				6379DD782051840E00D6FA7C /* LibraryController.swift in Sources */,
 				D3B72085204F043E00A6F00C /* LetterHighlightingCell.swift in Sources */,
 				D3B64B042052707C004A58BB /* ScannedText+CoreDataProperties.swift in Sources */,

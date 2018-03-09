@@ -57,8 +57,23 @@ class ReaderController: UIViewController {
         paragraph.lineSpacing = CGFloat(preferences.float(forKey: "line-spacing"))
         attributes[.paragraphStyle] = paragraph
         
+        let attributedString = NSMutableAttributedString(string : scannedText!.text!, attributes : attributes)
         
-        textView.attributedText = NSAttributedString(string : scannedText!.text!, attributes : attributes)
+        // Get the dictionary of letters and extract the saved letter-color pairs
+        let letters = preferences.dictionary(forKey : "letters") as! [String : NSData]
+        let letterIndicies = Array(letters.keys)
+        
+        for letter in letterIndicies {
+            let letterColor = NSKeyedUnarchiver.unarchiveObject(with : letters[letter]! as Data) as? UIColor
+            let ranges = scannedText!.text!.ranges(of : letter)
+            
+            for range in ranges {
+                attributedString.addAttribute(.foregroundColor, value : letterColor!, range : NSRange(range, in : textView.text))
+            }
+            
+        }
+        
+        textView.attributedText = attributedString
     }
 
     override func viewDidLayoutSubviews() {
