@@ -13,94 +13,119 @@ import AVFoundation
 import CoreImage
 
 
-class LibraryController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, G8TesseractDelegate{
+class LibraryController : UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, G8TesseractDelegate {
 
+    // Stores the collection of scanned texts
+    var scannedTexts : [ScannedText]?
+    
     @IBAction func addButton(_ sender: UIBarButtonItem) {
         
-//        TODO NSLOCALIZEDSTRING
+        // Define the picker title
+        let imagePickerTitle = NSLocalizedString("Upload a photo from..", comment : "String used as title for the picker that allows image selection from gallery or camera")
         
-        let imagePickerActionSheet = UIAlertController(title: "Upload a photo from...", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        // Build the picker as an ActionSheet
+        let imagePickerActionSheet = UIAlertController(title : imagePickerTitle, message : nil, preferredStyle : UIAlertControllerStyle.actionSheet)
         
-        //        TODO NSLOCALIZEDSTRING
+        // Set the camera action only if it is available
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraButton = UIAlertAction(title: "Camera", style: .default, handler: { (alert) in
+            // Define the camera name
+            let cameraName = NSLocalizedString("Camera", comment : "String that represents the camera name")
+            
+            let cameraButton = UIAlertAction(title : cameraName, style : .default, handler : {
+                alert in
+                
                 let imagePicker = UIImagePickerController()
+                
                 imagePicker.delegate = self
                 imagePicker.sourceType = .camera
                 imagePicker.allowsEditing = true
-                self.present(imagePicker, animated: true, completion: nil)
+                
+                self.present(imagePicker, animated : true, completion : nil)
             })
+            
             imagePickerActionSheet.addAction(cameraButton)
         }
-        //        TODO NSLOCALIZEDSTRING
-        let libraryButton = UIAlertAction(title: "Gallery", style: .default) { (alert) in
+        
+        
+        // Define the gallery name
+        let galleryName = NSLocalizedString("Gallery", comment : "String that represents the gallery name")
+        
+        let libraryButton = UIAlertAction(title : galleryName, style : .default) {
+            alert in
+            
             let imagePicker = UIImagePickerController()
+            
             imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary
-            self.present(imagePicker, animated: true, completion: nil)
+            
+            self.present(imagePicker, animated : true, completion : nil)
         }
+        
         imagePickerActionSheet.addAction(libraryButton)
         
-        //        TODO NSLOCALIZEDSTRING
-        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in }
+        // Define the string used for cancel action
+        let cancelName = NSLocalizedString("Cancel", comment : "String used for cancel actions")
+        
+        let cancelButton = UIAlertAction(title : cancelName, style : .cancel) {
+            alert in
+            
+        }
+        
         imagePickerActionSheet.addAction(cancelButton)
         imagePickerActionSheet.view.layoutIfNeeded()
-        //It displays the action sheet to the user after tapping the PHOTO CAMERA button in navigation bar
+        // It displays the action sheet to the user after tapping the PHOTO CAMERA button in navigation bar
         
         
         if let popoverController = imagePickerActionSheet.popoverPresentationController {
-            popoverController.barButtonItem = sender as? UIBarButtonItem
+            popoverController.barButtonItem = sender
         }
         
-        present(imagePickerActionSheet, animated: true, completion: nil)
+        present(imagePickerActionSheet, animated : true, completion : nil)
         
     }
-    
-    
-    
-    
-    
     
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated : true, completion : nil)
     }
     
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        //        let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
-        //        photoUmageView.image = selectedPhoto
+    func imagePickerController(_ picker : UIImagePickerController, didFinishPickingMediaWithInfo info : [String : Any]) {
+
+        // The image comes from the gallery
         if let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            
-            picker.dismiss(animated: true, completion : {
-                
+            picker.dismiss(animated : true, completion : {
+                // Extract the text from the selected photo
                 let recognizedText = self.performImageRecognition(selectedPhoto)
                 
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                // Instantiate the view controller delegated to show the results
+                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let editController = storyBoard.instantiateViewController(withIdentifier: "editController") as! EditController
                 
-                
-                
+                // Set the selected image and the scanned text inside the controller
                 editController.selectedImage = selectedPhoto
                 editController.scannedText = recognizedText
                 
+                // Show the controller
                 self.navigationController?.pushViewController(editController, animated: true)
             })
         }
         
+        // The image comes from the camera
         if let selectedPhoto = info[UIImagePickerControllerEditedImage] as? UIImage {
             picker.dismiss(animated: true, completion:{
-            
+                // Extract the text from the selected photo
                 let recognizedText = self.performImageRecognition(selectedPhoto)
                 
+                // Instantiate the view controller delegated to show the results
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let editController = storyBoard.instantiateViewController(withIdentifier: "editController") as! EditController
                 
-                
-                
+                // Set the selected image and the scanned text inside the controller
                 editController.selectedImage = selectedPhoto
                 editController.scannedText = recognizedText
                 
+                // Show the controller
                 self.navigationController?.pushViewController(editController, animated: true)
             
             })
@@ -109,15 +134,14 @@ class LibraryController: UITableViewController, UIImagePickerControllerDelegate,
     
     
     func performImageRecognition(_ image: UIImage) -> String{
-        //
-        //        let imagePreProcessed = self.processImage(inputImage: image)
-        //        imageView2.image = imagePreProcessed
-        //
+        
+        // let imagePreProcessed = self.processImage(inputImage: image)
+        
         let tesseract = G8Tesseract(language: "eng", engineMode: .tesseractOnly)
         tesseract?.delegate = self
         
-        //            change the engine mode
-        //            tesseract.engineMode = .tesseractCubeCombined
+        // tesseract.engineMode = .tesseractCubeCombined
+        
         tesseract?.pageSegmentationMode = G8PageSegmentationMode(rawValue: 1)!
         tesseract?.image = image.g8_blackAndWhite()
         tesseract?.recognize()
@@ -129,45 +153,56 @@ class LibraryController: UITableViewController, UIImagePickerControllerDelegate,
     }
     
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        // Get the data from the storage
+        scannedTexts = ScannedTextManager.loadAll()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
+    
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    override func numberOfSections(in tableView : UITableView) -> Int {
+        return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    override func tableView(_ tableView : UITableView, numberOfRowsInSection section : Int) -> Int {
+        return ScannedTextManager.loadAll().count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        // Get the scanned text to display
+        let scannedText = scannedTexts![indexPath.row]
+        
+        // Get the delegated cell and cast it to a LibraryCell
+        let cell = tableView.dequeueReusableCell(withIdentifier : "libraryCell", for : indexPath) as! LibraryCell
 
-        // Configure the cell...
+        // Set the label and the image to what's inside the scanned text to display
+        cell.scannedImage.image = NSKeyedUnarchiver.unarchiveObject(with: scannedText.image! as Data) as? UIImage
+        cell.titleLabel.text = scannedText.title
 
         return cell
     }
-    */
-
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+            // Programmatically set the name of the section that displays all the scans
+            case 0 : return NSLocalizedString("Scans", comment: "String used as header of the scans section in the main screen")
+            
+            default : return ""
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -212,5 +247,11 @@ class LibraryController: UITableViewController, UIImagePickerControllerDelegate,
         // Pass the selected object to the new view controller.
     }
     */
+    
 
+    override func viewWillAppear(_ animated: Bool) {
+        scannedTexts = ScannedTextManager.loadAll()
+        tableView.reloadData()
+    }
+    
 }

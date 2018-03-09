@@ -31,10 +31,29 @@ class EditController : UITableViewController {
         
         // Hide the keyboard when tapping outside the field
         self.hideKeyboard()
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem : .done, target : self, action : #selector(saveScannedText))
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @objc private func saveScannedText() {
+        if let selectedTitle = titleTextField.text, let scannedText = scannedTextView.text, !selectedTitle.isEmpty, !scannedText.isEmpty {
+            ScannedTextManager.add(title : selectedTitle, text : scannedText, image : imageView.image!)
+            navigationController?.popViewController(animated: true)
+        } else {
+            let title = NSLocalizedString("Incomplete fields", comment : "String used for the alert dialog shown when the user tries to add an empty scanned text or without a title")
+            let message = NSLocalizedString("You have to select a title and keep some text in the scanned field", comment : "String presented in the alert dialog shown when the user tries to add an empty scanned text without a title.")
+            
+            // Set an "OK" action for the dialog
+            let alert = UIAlertController(title : title, message : message, preferredStyle : .alert)
+            alert.addAction(UIAlertAction(title: "OK", style : .default, handler : nil))
+            
+            // Show the alert dialog
+            self.present(alert, animated : true, completion : nil)
+        }
     }
 
 }

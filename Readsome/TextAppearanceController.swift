@@ -9,7 +9,7 @@
 import UIKit
 import ActionSheetPicker_3_0
 
-class TextAppearanceController: UITableViewController {
+class TextAppearanceController : UITableViewController {
 
     // Represents the user's settings
     let preferences = UserDefaults.standard
@@ -33,6 +33,8 @@ class TextAppearanceController: UITableViewController {
     // Represents the cell that triggers the font family picker
     @IBOutlet weak var fontFamilyCell: UITableViewCell!
     
+    // Represents the label that shows the font name inside fontFamilyCell
+    @IBOutlet weak var fontFamilyLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +73,7 @@ class TextAppearanceController: UITableViewController {
         }
         
         attributes[.font] = font
-        
+        fontFamilyLabel.text = fontName
         
         // Setting the spacing between letters
         let letterSpacing = preferences.float(forKey: "letter-spacing")
