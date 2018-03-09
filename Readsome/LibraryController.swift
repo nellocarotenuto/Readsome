@@ -30,9 +30,9 @@ class LibraryController : UITableViewController, UIImagePickerControllerDelegate
         // Set the camera action only if it is available
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             // Define the camera name
-            let cameraName = NSLocalizedString("Camera", comment : "String that represents the camera name")
+            let camera = NSLocalizedString("Camera", comment : "String that represents the camera name")
             
-            let cameraButton = UIAlertAction(title : cameraName, style : .default, handler : {
+            let cameraButton = UIAlertAction(title : camera, style : .default, handler : {
                 alert in
                 
                 let imagePicker = UIImagePickerController()
@@ -40,6 +40,7 @@ class LibraryController : UITableViewController, UIImagePickerControllerDelegate
                 imagePicker.delegate = self
                 imagePicker.sourceType = .camera
                 imagePicker.allowsEditing = true
+
                 
                 self.present(imagePicker, animated : true, completion : nil)
             })
@@ -49,15 +50,16 @@ class LibraryController : UITableViewController, UIImagePickerControllerDelegate
         
         
         // Define the gallery name
-        let galleryName = NSLocalizedString("Gallery", comment : "String that represents the gallery name")
+        let gallery = NSLocalizedString("Gallery", comment : "String that represents the gallery name")
         
-        let libraryButton = UIAlertAction(title : galleryName, style : .default) {
+        let libraryButton = UIAlertAction(title : gallery, style : .default) {
             alert in
             
             let imagePicker = UIImagePickerController()
             
             imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary
+            imagePicker.allowsEditing = true
             
             self.present(imagePicker, animated : true, completion : nil)
         }
@@ -93,80 +95,39 @@ class LibraryController : UITableViewController, UIImagePickerControllerDelegate
     
     func imagePickerController(_ picker : UIImagePickerController, didFinishPickingMediaWithInfo info : [String : Any]) {
 
-        // The image comes from the gallery
-        if let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            picker.dismiss(animated : true, completion : {
-                // Extract the text from the selected photo
-                var preProcessedImage = self.processImage(inputImage: selectedPhoto)
-                let recognizedText = self.performImageRecognition(preProcessedImage)
-                
-                // Instantiate the view controller delegated to show the results
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let editController = storyBoard.instantiateViewController(withIdentifier: "editController") as! EditController
-                
-                // Set the selected image and the scanned text inside the controller
-                editController.selectedImage = preProcessedImage
-                editController.scannedText = recognizedText
-                
-                // Show the controller
-                self.navigationController?.pushViewController(editController, animated: true)
-            })
-        }
         
         // The image comes from the camera
         if let selectedPhoto = info[UIImagePickerControllerEditedImage] as? UIImage {
             picker.dismiss(animated: true, completion:{
-                // Extract the text from the selected photo
-                var preProcessedImage = self.processImage(inputImage: selectedPhoto)
-                let recognizedText = self.performImageRecognition(preProcessedImage)
-                
                 // Instantiate the view controller delegated to show the results
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let editController = storyBoard.instantiateViewController(withIdentifier: "editController") as! EditController
-                
-                // Set the selected image and the scanned text inside the controller
-                editController.selectedImage = preProcessedImage
-                editController.scannedText = recognizedText
+                editController.selectedImage = selectedPhoto
+
+                // Show the controller
+                self.navigationController?.pushViewController(editController, animated: true)
+
+            })
+             }
+        
+        // The image comes from the gallery
+        if let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            picker.dismiss(animated : true, completion : {
+                // Instantiate the view controller delegated to show the results
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let editController = storyBoard.instantiateViewController(withIdentifier: "editController") as! EditController
+                editController.selectedImage = selectedPhoto
                 
                 // Show the controller
                 self.navigationController?.pushViewController(editController, animated: true)
-            
+                
             })
         }
+        
+        
+       
     }
     
-    
-    func performImageRecognition(_ image: UIImage) -> String{
-        
-//        let imagePreProcessed = self.processImage(inputImage: image)
-        
-        let tesseract = G8Tesseract(language: "eng", engineMode: .tesseractOnly)
-        tesseract?.delegate = self
-        
-        // tesseract.engineMode = .tesseractCubeCombined
-        
-        tesseract?.pageSegmentationMode = G8PageSegmentationMode(rawValue: 1)!
-        tesseract?.image = image.g8_blackAndWhite()
-        tesseract?.recognize()
-        
-        var text = tesseract?.recognizedText
-        text = text?.components(separatedBy: NSCharacterSet.newlines).filter(){$0 != ""}.joined(separator: "\n")
-        
-        return text!
-    }
-    
-    
-        func processImage(inputImage: UIImage) -> UIImage {
-    
-            var processedImage = inputImage
-            
-            let medianFilter = MedianFilter()
-            var filteredImage = processedImage.filterWithOperation(medianFilter)
-            let thresholdFilter = AdaptiveThreshold()
-            thresholdFilter.blurRadiusInPixels = 2.0
-            filteredImage = filteredImage.filterWithOperation(thresholdFilter)
-            return filteredImage
-    }
     
     
     override func viewDidLoad() {

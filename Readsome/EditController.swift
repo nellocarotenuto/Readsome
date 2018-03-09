@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import TesseractOCR
+import GPUImage
 
-class EditController : UITableViewController, UITextFieldDelegate {
+class EditController : UITableViewController, UITextFieldDelegate, G8TesseractDelegate {
 
     @IBOutlet weak var scannedTextView: UITextView!
     @IBOutlet weak var titleTextField: UITextField!
@@ -17,19 +19,24 @@ class EditController : UITableViewController, UITextFieldDelegate {
     var selectedImage : UIImage?
     var scannedText : String?
     
+    override func viewDidAppear(_ animated: Bool) {
+    
+        self.performImageRecognition(selectedImage!)
+    
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.titleTextField.delegate = self
-        
-        if let scannedText = scannedText {
-            scannedTextView.text = scannedText
-        }
-        
-        if let selectedImage = selectedImage {
-            imageView.contentMode = .scaleAspectFill
-            imageView.image = selectedImage
-        }
-        
+//        if let scannedText = scannedText {
+//            scannedTextView.text = scannedText
+//        }
+//
+//        if let selectedImage = selectedImage {
+//            imageView.contentMode = .scaleAspectFill
+//            imageView.image = selectedImage
+//        }
+//
         // Hide the keyboard when tapping outside the field
         self.hideKeyboard()
         
@@ -38,7 +45,6 @@ class EditController : UITableViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         titleTextField.delegate = self as? UITextFieldDelegate
         titleTextField.returnKeyType = .done
     }
@@ -68,5 +74,43 @@ class EditController : UITableViewController, UITextFieldDelegate {
             self.present(alert, animated : true, completion : nil)
         }
     }
+    
+    
+    
+    func performImageRecognition(_ image: UIImage) -> Void{
+        
+        let imagePreProcessed = self.processImage(inputImage: image)
+        
+        let tesseract = G8Tesseract(language: "eng", engineMode: .tesseractOnly)
+        tesseract?.delegate = self
+        
+        // tesseract.engineMode = .tesseractCubeCombined
+        
+        tesseract?.pageSegmentationMode = G8PageSegmentationMode(rawValue: 1)!
+        tesseract?.image = imagePreProcessed.g8_blackAndWhite()
+        tesseract?.recognize()
+        
+        var text = tesseract?.recognizedText
+        text = text?.components(separatedBy: NSCharacterSet.newlines).filter(){$0 != ""}.joined(separator: "\n")
+        
+        self.scannedTextView.text = text
+    
+    }
+    
+    
+    func processImage(inputImage: UIImage) -> UIImage {
+        
+        var processedImage = inputImage
+        
+        let medianFilter = MedianFilter()
+        var filteredImage = processedImage.filterWithOperation(medianFilter)
+        let thresholdFilter = AdaptiveThreshold()
+        thresholdFilter.blurRadiusInPixels = 2.0
+        filteredImage = filteredImage.filterWithOperation(thresholdFilter)
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = selectedImage
+        return filteredImage
+    }
+    
 
 }
