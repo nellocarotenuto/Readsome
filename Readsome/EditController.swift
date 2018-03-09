@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditController : UITableViewController {
+class EditController : UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var scannedTextView: UITextView!
     @IBOutlet weak var titleTextField: UITextField!
@@ -19,6 +19,7 @@ class EditController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.titleTextField.delegate = self
         
         if let scannedText = scannedText {
             scannedTextView.text = scannedText
@@ -33,6 +34,18 @@ class EditController : UITableViewController {
         self.hideKeyboard()
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem : .done, target : self, action : #selector(saveScannedText))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        titleTextField.delegate = self as? UITextFieldDelegate
+        titleTextField.returnKeyType = .done
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     override func didReceiveMemoryWarning() {

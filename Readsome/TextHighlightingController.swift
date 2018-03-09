@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TextHighlightingController  : UITableViewController {
+class TextHighlightingController  : UITableViewController, UITextFieldDelegate {
 
     let preferences = UserDefaults.standard
 
@@ -63,6 +63,7 @@ class TextHighlightingController  : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.textField.delegate = self
         
         // Set up buttons background colors
         redButton.backgroundColor = UIColor.red
@@ -98,7 +99,19 @@ class TextHighlightingController  : UITableViewController {
         // Hide the keyboard when tapping outside the field
         self.hideKeyboard()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        textField.delegate = self as? UITextFieldDelegate
+        textField.returnKeyType = .done
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
