@@ -97,14 +97,15 @@ class LibraryController : UITableViewController, UIImagePickerControllerDelegate
         if let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage {
             picker.dismiss(animated : true, completion : {
                 // Extract the text from the selected photo
-                let recognizedText = self.performImageRecognition(selectedPhoto)
+                var preProcessedImage = self.processImage(inputImage: selectedPhoto)
+                let recognizedText = self.performImageRecognition(preProcessedImage)
                 
                 // Instantiate the view controller delegated to show the results
-                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let editController = storyBoard.instantiateViewController(withIdentifier: "editController") as! EditController
                 
                 // Set the selected image and the scanned text inside the controller
-                editController.selectedImage = selectedPhoto
+                editController.selectedImage = preProcessedImage
                 editController.scannedText = recognizedText
                 
                 // Show the controller
@@ -116,14 +117,15 @@ class LibraryController : UITableViewController, UIImagePickerControllerDelegate
         if let selectedPhoto = info[UIImagePickerControllerEditedImage] as? UIImage {
             picker.dismiss(animated: true, completion:{
                 // Extract the text from the selected photo
-                let recognizedText = self.performImageRecognition(selectedPhoto)
+                var preProcessedImage = self.processImage(inputImage: selectedPhoto)
+                let recognizedText = self.performImageRecognition(preProcessedImage)
                 
                 // Instantiate the view controller delegated to show the results
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let editController = storyBoard.instantiateViewController(withIdentifier: "editController") as! EditController
                 
                 // Set the selected image and the scanned text inside the controller
-                editController.selectedImage = selectedPhoto
+                editController.selectedImage = preProcessedImage
                 editController.scannedText = recognizedText
                 
                 // Show the controller
@@ -136,7 +138,7 @@ class LibraryController : UITableViewController, UIImagePickerControllerDelegate
     
     func performImageRecognition(_ image: UIImage) -> String{
         
-        // let imagePreProcessed = self.processImage(inputImage: image)
+//        let imagePreProcessed = self.processImage(inputImage: image)
         
         let tesseract = G8Tesseract(language: "eng", engineMode: .tesseractOnly)
         tesseract?.delegate = self
@@ -151,6 +153,19 @@ class LibraryController : UITableViewController, UIImagePickerControllerDelegate
         text = text?.components(separatedBy: NSCharacterSet.newlines).filter(){$0 != ""}.joined(separator: "\n")
         
         return text!
+    }
+    
+    
+        func processImage(inputImage: UIImage) -> UIImage {
+    
+            var processedImage = inputImage
+            
+            let medianFilter = MedianFilter()
+            var filteredImage = processedImage.filterWithOperation(medianFilter)
+            let thresholdFilter = AdaptiveThreshold()
+            thresholdFilter.blurRadiusInPixels = 2.0
+            filteredImage = filteredImage.filterWithOperation(thresholdFilter)
+            return filteredImage
     }
     
     
