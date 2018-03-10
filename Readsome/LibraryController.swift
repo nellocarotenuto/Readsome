@@ -39,7 +39,7 @@ class LibraryController : UITableViewController, UIImagePickerControllerDelegate
                 
                 imagePicker.delegate = self
                 imagePicker.sourceType = .camera
-                imagePicker.allowsEditing = true
+                imagePicker.allowsEditing = false
 
                 
                 self.present(imagePicker, animated : true, completion : nil)
