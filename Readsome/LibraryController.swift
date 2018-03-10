@@ -172,6 +172,15 @@ class LibraryController : UITableViewController, UIImagePickerControllerDelegate
         }
     }
     
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        switch section {
+            // Programmatically set the name of the section that displays all the scans
+            case 0 : return NSLocalizedString("You can add more scans to the library by tapping the plus icon at top-right corner.", comment: "String used as footer of the scans section in the main screen")
+            
+            default : return ""
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }

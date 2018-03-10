@@ -255,14 +255,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TextAppearance" translatesAutoresizingMaskIntoConstraints="NO" id="6gA-AV-p70">
-                                                    <rect key="frame" x="16" y="7" width="30" height="30"/>
+                                                    <rect key="frame" x="16" y="6" width="32" height="32"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="OAA-7D-gfz"/>
-                                                        <constraint firstAttribute="width" constant="30" id="ch7-67-pBa"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="dqz-3c-6c5"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="j2V-si-0hc"/>
+                                                        <constraint firstAttribute="width" constant="32" id="kWh-G6-lQ9"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text appearance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Doq-Ct-SVd">
-                                                    <rect key="frame" x="62" y="12" width="208" height="20"/>
+                                                    <rect key="frame" x="64" y="12" width="206" height="20"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -271,6 +272,7 @@
                                             <constraints>
                                                 <constraint firstItem="Doq-Ct-SVd" firstAttribute="leading" secondItem="6gA-AV-p70" secondAttribute="trailing" constant="16" id="9l5-tr-fob"/>
                                                 <constraint firstItem="6gA-AV-p70" firstAttribute="leading" secondItem="aho-Wn-Oas" secondAttribute="leading" constant="16" id="GYm-y4-z9Z"/>
+                                                <constraint firstItem="6gA-AV-p70" firstAttribute="centerY" secondItem="aho-Wn-Oas" secondAttribute="centerY" id="MYe-U4-rIH"/>
                                                 <constraint firstAttribute="trailing" secondItem="Doq-Ct-SVd" secondAttribute="trailing" constant="16" id="f1M-rF-3Wp"/>
                                                 <constraint firstItem="6gA-AV-p70" firstAttribute="centerY" secondItem="aho-Wn-Oas" secondAttribute="centerY" id="ycd-eI-Vcy"/>
                                                 <constraint firstItem="Doq-Ct-SVd" firstAttribute="centerY" secondItem="aho-Wn-Oas" secondAttribute="centerY" id="yrD-z2-MQk"/>
@@ -289,14 +291,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TextHighlighting" translatesAutoresizingMaskIntoConstraints="NO" id="b5E-Fw-0ep">
-                                                    <rect key="frame" x="16" y="7" width="30" height="30"/>
+                                                    <rect key="frame" x="16" y="6" width="32" height="32"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="EHP-A7-PH8"/>
-                                                        <constraint firstAttribute="height" constant="30" id="Fud-l3-H61"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="BCb-BH-SSw"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="FTQ-sQ-XFm"/>
+                                                        <constraint firstAttribute="width" constant="32" id="b7x-wo-BhJ"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text highlighting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wVT-pt-jah">
-                                                    <rect key="frame" x="62" y="11.5" width="208" height="21"/>
+                                                    <rect key="frame" x="64" y="11.5" width="206" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -308,6 +311,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="wVT-pt-jah" secondAttribute="trailing" constant="16" id="iAT-Pg-YtT"/>
                                                 <constraint firstItem="b5E-Fw-0ep" firstAttribute="leading" secondItem="Fj5-j5-MGN" secondAttribute="leading" constant="16" id="iMa-hD-zN6"/>
                                                 <constraint firstItem="wVT-pt-jah" firstAttribute="centerY" secondItem="Fj5-j5-MGN" secondAttribute="centerY" id="pVo-Em-3u7"/>
+                                                <constraint firstItem="b5E-Fw-0ep" firstAttribute="centerY" secondItem="Fj5-j5-MGN" secondAttribute="centerY" id="sR1-CN-A6n"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="62" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -315,12 +319,72 @@
                                             <segue destination="mBi-4R-eMt" kind="show" id="tc0-7D-Ymt"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="l2L-Gf-Ku0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="l2L-Gf-Ku0">
                                         <rect key="frame" x="0.0" y="143.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l2L-Gf-Ku0" id="TmC-Cm-sMI">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="286" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TextToSpeech" translatesAutoresizingMaskIntoConstraints="NO" id="2of-Sx-9Qk">
+                                                    <rect key="frame" x="16" y="6" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="Cfp-sW-8gZ"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="Qid-d3-Ssa"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="Y9Z-bd-hzP"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text to speech" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ijd-j2-OfJ">
+                                                    <rect key="frame" x="64" y="11.5" width="206" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="2of-Sx-9Qk" firstAttribute="centerY" secondItem="TmC-Cm-sMI" secondAttribute="centerY" id="4vB-zY-Jcq"/>
+                                                <constraint firstItem="2of-Sx-9Qk" firstAttribute="leading" secondItem="TmC-Cm-sMI" secondAttribute="leading" constant="16" id="R2i-OG-Lrh"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ijd-j2-OfJ" secondAttribute="trailing" constant="16" id="gyy-am-NmS"/>
+                                                <constraint firstItem="Ijd-j2-OfJ" firstAttribute="centerY" secondItem="TmC-Cm-sMI" secondAttribute="centerY" id="hfM-ba-rNH"/>
+                                                <constraint firstItem="Ijd-j2-OfJ" firstAttribute="leading" secondItem="2of-Sx-9Qk" secondAttribute="trailing" constant="16" id="lGi-2Z-pgA"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="62" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Info" id="77e-Wq-ZTN">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="SwA-uy-Nd7">
+                                        <rect key="frame" x="0.0" y="243.5" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SwA-uy-Nd7" id="4Hs-FT-roA">
+                                            <rect key="frame" x="0.0" y="0.0" width="286" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Info" translatesAutoresizingMaskIntoConstraints="NO" id="sKc-D4-RrS">
+                                                    <rect key="frame" x="16" y="6" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="2Nl-MT-h21"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="5qP-AA-Sn6"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="K5E-5k-Vk6"/>
+                                                        <constraint firstAttribute="width" constant="32" id="P5f-o8-90b"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Readsome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6I-Ar-P2R">
+                                                    <rect key="frame" x="64" y="12" width="206" height="20"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="sKc-D4-RrS" firstAttribute="leading" secondItem="4Hs-FT-roA" secondAttribute="leading" constant="16" id="3eS-S9-QOm"/>
+                                                <constraint firstItem="m6I-Ar-P2R" firstAttribute="centerY" secondItem="4Hs-FT-roA" secondAttribute="centerY" id="SR7-p7-chc"/>
+                                                <constraint firstAttribute="trailing" secondItem="m6I-Ar-P2R" secondAttribute="trailing" constant="16" id="i9O-VB-IqH"/>
+                                                <constraint firstItem="sKc-D4-RrS" firstAttribute="centerY" secondItem="4Hs-FT-roA" secondAttribute="centerY" id="kCt-U4-tsD"/>
+                                                <constraint firstItem="m6I-Ar-P2R" firstAttribute="leading" secondItem="sKc-D4-RrS" secondAttribute="trailing" constant="16" id="qZj-Sr-KqD"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="62" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
@@ -1037,8 +1101,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="TextAppearance" width="30" height="30"/>
-        <image name="TextHighlighting" width="30" height="30"/>
+        <image name="Info" width="32" height="32"/>
+        <image name="TextAppearance" width="32" height="32"/>
+        <image name="TextHighlighting" width="32" height="32"/>
+        <image name="TextToSpeech" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Csk-p6-4rS"/>
