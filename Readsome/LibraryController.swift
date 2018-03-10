@@ -27,6 +27,8 @@ class LibraryController : UITableViewController, UIImagePickerControllerDelegate
         // Build the picker as an ActionSheet
         let imagePickerActionSheet = UIAlertController(title : imagePickerTitle, message : nil, preferredStyle : UIAlertControllerStyle.actionSheet)
         
+        imagePickerActionSheet.view.tintColor = self.view.tintColor
+        
         // Set the camera action only if it is available
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             // Define the camera name
