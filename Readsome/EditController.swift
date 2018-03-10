@@ -117,7 +117,7 @@ class EditController : UITableViewController, UITextFieldDelegate, G8TesseractDe
     }
     
 
-    func performImageRecognition(_ image: UIImage) {
+    func performImageRecognition(_ image : UIImage) {
         
         
         let tesseract = G8Tesseract(language: "eng", engineMode: .tesseractOnly)
@@ -134,7 +134,21 @@ class EditController : UITableViewController, UITextFieldDelegate, G8TesseractDe
         tesseract?.recognize()
         
         var text = tesseract?.recognizedText
-        text = text?.components(separatedBy: NSCharacterSet.newlines).filter(){$0 != ""}.joined(separator: "\n")
+        
+        // Remove breaks
+        text = text?.replacingOccurrences(of: "-\n", with: "")
+        text = text?.replacingOccurrences(of: "–\n", with: "")
+        text = text?.replacingOccurrences(of: "—\n", with: "")
+        text = text?.replacingOccurrences(of: "―\n", with: "")
+        
+        // Put a placeholder where empty lines are found
+        text = text?.replacingOccurrences(of: "\n\n", with: "$R_NL#")
+        
+        // Remove new lines
+        text = text?.replacingOccurrences(of: "\n", with: " ")
+        
+        // Restore empty lines
+        text = text?.replacingOccurrences(of: "$R_NL#", with: "\n\n")
         
         //      Touching the UI in the main thread
         DispatchQueue.main.sync {
@@ -148,23 +162,8 @@ class EditController : UITableViewController, UITextFieldDelegate, G8TesseractDe
     }
     
     
-    func processImage(inputImage: UIImage) -> UIImage {
-        
-        var processedImage = inputImage
-        
-        let gaussianBlur = GaussianBlur()
-        gaussianBlur.blurRadiusInPixels = 2.0
-        var filteredImage = processedImage.filterWithOperation(gaussianBlur)
-        
-        let medianFilter = MedianFilter()
-        filteredImage = filteredImage.filterWithOperation(medianFilter)
-        
-        let thresholdFilter = AdaptiveThreshold()
-        thresholdFilter.blurRadiusInPixels = 2.0
-        filteredImage = filteredImage.filterWithOperation(thresholdFilter)
-        
-        return filteredImage
+    func processImage(inputImage : UIImage) -> UIImage {
+        return inputImage
     }
-    
 
 }
