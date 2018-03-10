@@ -23,22 +23,31 @@ class EditController : UITableViewController, UITextFieldDelegate, G8TesseractDe
     ///////////////////////////////      todo: make it working  ////////////////////////////
     
     @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
+        self.tableView.isScrollEnabled = false
         let newImageView = UIImageView(image: imageView.image)
-        newImageView.frame = CGRect(x:0, y:0, width:self.view.frame.maxX,height: self.view.frame.maxY)
-        newImageView.backgroundColor = .black
-        newImageView.contentMode = .scaleToFill
+        newImageView.contentMode = .scaleAspectFit
         newImageView.isUserInteractionEnabled = true
-        let tap2 = UISwipeGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
+        var newScrollView = UIScrollView()
+        newScrollView.frame = view.frame
+        newImageView.frame = newScrollView.frame
+        newScrollView.backgroundColor = tableView.backgroundColor
         
-        newImageView.addGestureRecognizer(tap2)
+        //        tableView.autoresizesSubviews = true
+        self.tableView.addSubview(newScrollView)
+        
+        
+        newScrollView.isScrollEnabled = true
+        newScrollView.isUserInteractionEnabled = true
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
-        newImageView.addGestureRecognizer(tap)
-        self.view.addSubview(newImageView)
+        newScrollView.addGestureRecognizer(tap)
+        newScrollView.addSubview(newImageView)
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = true
     }
     
     @objc func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
+        self.tableView.isScrollEnabled = true
         self.navigationController?.isNavigationBarHidden = false
         self.tabBarController?.tabBar.isHidden = false
         sender.view?.removeFromSuperview()
