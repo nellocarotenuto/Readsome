@@ -20,6 +20,31 @@ class EditController : UITableViewController, UITextFieldDelegate, G8TesseractDe
     var selectedImage : UIImage?
     var scannedText : String?
     
+    ///////////////////////////////      todo: make it working  ////////////////////////////
+    
+    @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
+        let newImageView = UIImageView(image: imageView.image)
+        newImageView.frame = CGRect(x:0, y:0, width:self.view.frame.maxX,height: self.view.frame.maxY)
+        newImageView.backgroundColor = .black
+        newImageView.contentMode = .scaleToFill
+        newImageView.isUserInteractionEnabled = true
+        let tap2 = UISwipeGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
+        
+        newImageView.addGestureRecognizer(tap2)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
+        newImageView.addGestureRecognizer(tap)
+        self.view.addSubview(newImageView)
+        self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    @objc func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+        sender.view?.removeFromSuperview()
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////
+    
     override func viewDidAppear(_ animated: Bool) {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()

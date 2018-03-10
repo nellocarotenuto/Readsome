@@ -137,8 +137,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="179.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qfy-J1-fHu">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qfy-J1-fHu">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="179.5"/>
+                                                    <gestureRecognizers/>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="S95-LI-Ffy" appends="YES" id="owd-QN-c3b"/>
+                                                    </connections>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -223,6 +227,11 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PuI-zG-Kr4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="S95-LI-Ffy">
+                    <connections>
+                        <action selector="imageTapped:" destination="lCx-cg-bzv" id="x2u-Yb-1ev"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2228" y="-478"/>
         </scene>
