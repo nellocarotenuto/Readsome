@@ -180,4 +180,8 @@ class TextAppearanceController : UITableViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        sampleTextView.scrollRangeToVisible(NSMakeRange(0, 0))
+    }
+    
 }
