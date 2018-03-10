@@ -24,8 +24,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9hJ-UH-mF4">
-                                <rect key="frame" x="16" y="132" width="288" height="420"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9hJ-UH-mF4">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -33,10 +33,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="9hJ-UH-mF4" firstAttribute="top" secondItem="l8V-K2-Ro9" secondAttribute="top" constant="16" id="16K-Np-a2q"/>
-                            <constraint firstItem="l8V-K2-Ro9" firstAttribute="bottom" secondItem="9hJ-UH-mF4" secondAttribute="bottom" constant="16" id="6J1-FV-NRc"/>
-                            <constraint firstItem="9hJ-UH-mF4" firstAttribute="leading" secondItem="l8V-K2-Ro9" secondAttribute="leading" constant="16" id="Nxw-vX-M8F"/>
-                            <constraint firstItem="l8V-K2-Ro9" firstAttribute="trailing" secondItem="9hJ-UH-mF4" secondAttribute="trailing" constant="16" id="xgB-0W-GTp"/>
+                            <constraint firstItem="l8V-K2-Ro9" firstAttribute="trailing" secondItem="9hJ-UH-mF4" secondAttribute="trailing" id="8iY-Gi-wur"/>
+                            <constraint firstItem="9hJ-UH-mF4" firstAttribute="top" secondItem="l8V-K2-Ro9" secondAttribute="top" id="QGq-0i-6cc"/>
+                            <constraint firstItem="l8V-K2-Ro9" firstAttribute="bottom" secondItem="9hJ-UH-mF4" secondAttribute="bottom" id="XIC-BP-fTT"/>
+                            <constraint firstItem="9hJ-UH-mF4" firstAttribute="leading" secondItem="l8V-K2-Ro9" secondAttribute="leading" id="ekH-EE-ODK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="l8V-K2-Ro9"/>
                     </view>
@@ -1015,6 +1015,9 @@
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Jy-bL-mhm">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="ZAz-rW-pgU" kind="relationship" relationship="rootViewController" id="s66-tb-XLB"/>
                     </connections>
