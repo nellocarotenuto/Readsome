@@ -421,7 +421,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01j-9H-Ykd">
-                                                    <rect key="frame" x="16" y="16" width="288" height="173.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="205.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
@@ -429,10 +429,10 @@
                                                 </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="01j-9H-Ykd" secondAttribute="bottom" constant="16" id="4rH-Nq-YAz"/>
-                                                <constraint firstItem="01j-9H-Ykd" firstAttribute="top" secondItem="hjm-8l-G8g" secondAttribute="top" constant="16" id="NtV-uY-JEJ"/>
-                                                <constraint firstItem="01j-9H-Ykd" firstAttribute="leading" secondItem="hjm-8l-G8g" secondAttribute="leading" constant="16" id="a6C-J1-LPr"/>
-                                                <constraint firstAttribute="trailing" secondItem="01j-9H-Ykd" secondAttribute="trailing" constant="16" id="hfG-49-pNA"/>
+                                                <constraint firstAttribute="trailing" secondItem="01j-9H-Ykd" secondAttribute="trailing" id="0Sh-iZ-qkQ"/>
+                                                <constraint firstItem="01j-9H-Ykd" firstAttribute="top" secondItem="hjm-8l-G8g" secondAttribute="top" id="PC1-TI-q3z"/>
+                                                <constraint firstItem="01j-9H-Ykd" firstAttribute="leading" secondItem="hjm-8l-G8g" secondAttribute="leading" id="Pmc-qB-zaf"/>
+                                                <constraint firstAttribute="bottom" secondItem="01j-9H-Ykd" secondAttribute="bottom" id="jaQ-a3-cEF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
