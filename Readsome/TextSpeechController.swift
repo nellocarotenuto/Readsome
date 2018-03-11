@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class TextSpeechController: UITableViewController, AVSpeechSynthesizerDelegate {
+class TextSpeechController: UITableViewController, AVSpeechSynthesizerDelegate, UITextFieldDelegate{
 
     let preferences = UserDefaults.standard
 
@@ -28,6 +28,10 @@ class TextSpeechController: UITableViewController, AVSpeechSynthesizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        sampleTextView.delegate = self as? UITextViewDelegate
+        self.hideKeyboard()
+        self.sampleTextView.delegate = self as? UITextViewDelegate
+        
         // Set up the sliders to show the stored values
         volumeSlider.value = preferences.float(forKey: "volume")
         pitchSlider.value = preferences.float(forKey: "pitch")
@@ -39,7 +43,12 @@ class TextSpeechController: UITableViewController, AVSpeechSynthesizerDelegate {
         // Allow callbacks for speak changes
         speech.delegate = self
     }
-
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.resignFirstResponder()
+        return true
+    }
+    
     @IBAction func volumeChange(_ sender: UISlider) {
         let volume = sender.value
         preferences.set(volume, forKey: "volume")
