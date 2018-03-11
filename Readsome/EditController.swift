@@ -69,19 +69,14 @@ class EditController : UITableViewController, UITextFieldDelegate, G8TesseractDe
     override func viewDidLoad() {
         super.viewDidLoad()
         self.titleTextField.delegate = self
-//        if let scannedText = scannedText {
-//            scannedTextView.text = scannedText
-//        }
-//
-//        if let selectedImage = selectedImage {
-//            imageView.contentMode = .scaleAspectFill
-//            imageView.image = selectedImage
-//        }
-//
+
         // Hide the keyboard when tapping outside the field
         self.hideKeyboard()
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem : .done, target : self, action : #selector(saveScannedText))
+        
+        // Add some padding to the text containers
+        scannedTextView.textContainerInset = UIEdgeInsetsMake(16, 16, 16, 16)
     }
     
     override func viewWillAppear(_ animated: Bool) {

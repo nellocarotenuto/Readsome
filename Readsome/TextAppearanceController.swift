@@ -47,6 +47,9 @@ class TextAppearanceController : UITableViewController {
         // Setting the switch status to represent the user's preference
         boldSwitch.setOn(preferences.bool(forKey: "font-bold"), animated: false)
         
+        // Add some padding to the text container
+        sampleTextView.textContainerInset = UIEdgeInsetsMake(16, 16, 16, 16)
+        
         updateSampleText()
     }
 
@@ -178,6 +181,10 @@ class TextAppearanceController : UITableViewController {
             // Don't forget to deselect the hit row
             tableView.deselectRow(at: indexPath, animated: true)
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        sampleTextView.scrollRangeToVisible(NSMakeRange(0, 0))
     }
     
 }

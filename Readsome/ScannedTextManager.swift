@@ -28,6 +28,8 @@ class ScannedTextManager {
         scannedText.text = text
         scannedText.image =  UIImageJPEGRepresentation(image, CGFloat(0.25)) as NSData?
         scannedText.position = loadAll().count - 1
+        
+        save()
     }
     
     static func loadAll() -> [ScannedText] {
@@ -78,9 +80,11 @@ class ScannedTextManager {
                 item.position -= 1
             }
             
+            save()
         } catch let error as NSError {
             print("Error: \(error.code)")
         }
+        
     }
     
     static func move(from : Int, to : Int) {
@@ -101,6 +105,8 @@ class ScannedTextManager {
         }
         
         itemToMove.position = to
+        
+        save()
     }
     
     static func save() {
