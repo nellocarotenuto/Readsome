@@ -47,6 +47,9 @@ class TextAppearanceController : UITableViewController {
         // Setting the switch status to represent the user's preference
         boldSwitch.setOn(preferences.bool(forKey: "font-bold"), animated: false)
         
+        // Add some padding to the text container
+        sampleTextView.textContainerInset = UIEdgeInsetsMake(16, 16, 16, 16)
+        
         updateSampleText()
     }
 

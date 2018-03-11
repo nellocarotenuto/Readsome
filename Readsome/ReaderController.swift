@@ -73,6 +73,9 @@ class ReaderController : UIViewController {
             
         }
         
+        // Add some padding to the text container
+        textView.textContainerInset = UIEdgeInsetsMake(16, 16, 16, 16)
+        
         textView.attributedText = attributedString
     }
 

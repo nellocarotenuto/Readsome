@@ -191,7 +191,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RsC-QN-uwM">
-                                                    <rect key="frame" x="16" y="0.0" width="288" height="179.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="179.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -202,11 +202,11 @@
                                                 </activityIndicatorView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="RsC-QN-uwM" firstAttribute="leading" secondItem="FRG-dx-Ci4" secondAttribute="leading" constant="16" id="3dr-li-8Ks"/>
                                                 <constraint firstAttribute="bottom" secondItem="RsC-QN-uwM" secondAttribute="bottom" id="ZZ0-MP-WJZ"/>
-                                                <constraint firstAttribute="trailing" secondItem="RsC-QN-uwM" secondAttribute="trailing" constant="16" id="aKm-lU-yPn"/>
+                                                <constraint firstItem="RsC-QN-uwM" firstAttribute="leading" secondItem="FRG-dx-Ci4" secondAttribute="leading" id="ZtE-A2-IhC"/>
                                                 <constraint firstItem="RsC-QN-uwM" firstAttribute="top" secondItem="FRG-dx-Ci4" secondAttribute="top" id="cxb-sP-lcC"/>
                                                 <constraint firstItem="Dwd-sU-7Hd" firstAttribute="centerX" secondItem="FRG-dx-Ci4" secondAttribute="centerX" id="da1-bX-c9R"/>
+                                                <constraint firstAttribute="trailing" secondItem="RsC-QN-uwM" secondAttribute="trailing" id="fsm-O8-uYZ"/>
                                                 <constraint firstItem="Dwd-sU-7Hd" firstAttribute="centerY" secondItem="FRG-dx-Ci4" secondAttribute="centerY" id="kou-6Y-Awb"/>
                                             </constraints>
                                         </tableViewCellContentView>
