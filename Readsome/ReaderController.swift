@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ReaderController : UIViewController {
 
     // Represents the user's settings
     let preferences = UserDefaults.standard
-    
+   
+    let speech = AVSpeechSynthesizer()
+
     // Represents the text view where to display the scanned text
     @IBOutlet weak var textView : UITextView!
     
@@ -22,11 +25,19 @@ class ReaderController : UIViewController {
     // Represents the scanned text to display
     var scannedText : ScannedText?
     
+    var volume: Float!
+    var pitch: Float!
+    var rate: Float!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Update the view title
         self.title = scannedText!.title
+        
+        volume = preferences.float(forKey: "volume")
+        pitch = preferences.float(forKey: "pitch")
+        rate = preferences.float(forKey: "rate")
         
         // Build the text on user's preferences
         var attributes = [NSAttributedStringKey : Any]()
@@ -73,12 +84,32 @@ class ReaderController : UIViewController {
             
         }
         
+        
         // Add some padding to the text container
         textView.textContainerInset = UIEdgeInsetsMake(16, 16, 16, 16)
         
         textView.attributedText = attributedString
     }
 
+    @IBAction func textSpeech(_ sender: UIBarButtonItem) {
+        
+        if !speech.isSpeaking {
+            let speechUtterance = AVSpeechUtterance(string: textView.text!)
+            speechUtterance.pitchMultiplier = self.pitch
+            speechUtterance.volume = self.volume
+            speechUtterance.rate = self.rate
+            
+            speech.speak(speechUtterance)
+            
+        } else {
+            speech.pauseSpeaking(at: AVSpeechBoundary.immediate)
+        }
+        if speech.isPaused {
+            speech.continueSpeaking()
+        }
+        
+    }
+    
     override func viewDidLayoutSubviews() {
         self.textView.scrollRangeToVisible(NSMakeRange(0, 0))
     }
