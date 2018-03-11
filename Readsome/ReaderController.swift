@@ -93,6 +93,14 @@ class ReaderController : UIViewController {
 
     @IBAction func textSpeech(_ sender: UIBarButtonItem) {
         
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        }
+        catch {
+            // report for an error
+            print("Error: ReaderController101")
+        }
+        
         if !speech.isSpeaking {
             let speechUtterance = AVSpeechUtterance(string: textView.text!)
             speechUtterance.pitchMultiplier = self.pitch
