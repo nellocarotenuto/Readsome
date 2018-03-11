@@ -37,6 +37,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
+        // Initialize text-to-speech
+        let volume = preferences.float(forKey : "volume")
+        
+        if volume == 0 {
+            preferences.set(0.7, forKey : "volume")
+        }
+        
+        let pitch = preferences.float(forKey : "pitch")
+        
+        if pitch == 0 {
+            preferences.set(1.15, forKey : "pitch")
+        }
+        
+        let rate = preferences.float(forKey : "rate")
+        
+        if rate == 0 {
+            preferences.set(0.15, forKey : "rate")
+        }
+        
         return true
     }
 

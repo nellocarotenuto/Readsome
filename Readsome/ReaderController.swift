@@ -9,12 +9,10 @@
 import UIKit
 import AVFoundation
 
-class ReaderController : UIViewController {
+class ReaderController : UIViewController, AVSpeechSynthesizerDelegate {
 
     // Represents the user's settings
     let preferences = UserDefaults.standard
-   
-    let speech = AVSpeechSynthesizer()
 
     // Represents the text view where to display the scanned text
     @IBOutlet weak var textView : UITextView!
@@ -25,6 +23,8 @@ class ReaderController : UIViewController {
     // Represents the scanned text to display
     var scannedText : ScannedText?
     
+    let speech = AVSpeechSynthesizer()
+    
     var volume: Float!
     var pitch: Float!
     var rate: Float!
@@ -34,10 +34,6 @@ class ReaderController : UIViewController {
 
         // Update the view title
         self.title = scannedText!.title
-        
-        volume = preferences.float(forKey: "volume")
-        pitch = preferences.float(forKey: "pitch")
-        rate = preferences.float(forKey: "rate")
         
         // Build the text on user's preferences
         var attributes = [NSAttributedStringKey : Any]()
@@ -84,28 +80,46 @@ class ReaderController : UIViewController {
             
         }
         
-        
         // Add some padding to the text container
         textView.textContainerInset = UIEdgeInsetsMake(16, 16, 16, 16)
         
         textView.attributedText = attributedString
+        
+        
+        // Prepare the text-to-speech component
+        volume = preferences.float(forKey : "volume")
+        pitch = preferences.float(forKey : "pitch")
+        rate = preferences.float(forKey : "rate")
+        
+        speech.delegate = self
     }
 
-    @IBAction func textSpeech(_ sender: UIBarButtonItem) {
-        
-        if !speech.isSpeaking {
-            let speechUtterance = AVSpeechUtterance(string: textView.text!)
+    @IBAction func textSpeech(_ sender : UIBarButtonItem) {
+        if speech.isSpeaking {
+            // The text-to-speech component has been initialized..
+            
+            if speech.isPaused {
+                // ..but no audio is being reproduced
+                
+                // Make it speak
+                speech.continueSpeaking()
+            } else {
+                // ..and is actually speaking
+                
+                // Make it stop
+                speech.pauseSpeaking(at : AVSpeechBoundary.immediate)
+            }
+        } else {
+            // The text-to-speech component hasn't been initialized yet
+            
+            let speechUtterance = AVSpeechUtterance(string : textView.text!)
             speechUtterance.pitchMultiplier = self.pitch
             speechUtterance.volume = self.volume
             speechUtterance.rate = self.rate
             
+            let lang = "en-US"
+            speechUtterance.voice = AVSpeechSynthesisVoice(language : lang)
             speech.speak(speechUtterance)
-            
-        } else {
-            speech.pauseSpeaking(at: AVSpeechBoundary.immediate)
-        }
-        if speech.isPaused {
-            speech.continueSpeaking()
         }
         
     }
@@ -119,15 +133,41 @@ class ReaderController : UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidDisappear(_ animated: Bool) {
+        speech.stopSpeaking(at : .immediate)
     }
-    */
 
+    func speechSynthesizer(_ synthesizer : AVSpeechSynthesizer, didFinish utterance : AVSpeechUtterance) {
+        // Show a play button
+        let playButton = UIBarButtonItem(barButtonSystemItem : .play, target : self, action: #selector(textSpeech(_ :)))
+        
+        textToSpeechButton = playButton
+        navigationItem.rightBarButtonItem = playButton
+    }
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didPause utterance: AVSpeechUtterance) {
+        // Show a play button
+        let playButton = UIBarButtonItem(barButtonSystemItem : .play, target : self, action: #selector(textSpeech(_ :)))
+        
+        textToSpeechButton = playButton
+        navigationItem.rightBarButtonItem = playButton
+    }
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
+        // Show a pause button
+        let pauseButton = UIBarButtonItem(barButtonSystemItem : .pause, target : self, action: #selector(textSpeech(_ :)))
+        
+        textToSpeechButton = pauseButton
+        navigationItem.rightBarButtonItem = pauseButton
+    }
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didContinue utterance: AVSpeechUtterance) {
+        // Show a pause button
+        let pauseButton = UIBarButtonItem(barButtonSystemItem : .pause, target : self, action: #selector(textSpeech(_ :)))
+        
+        textToSpeechButton = pauseButton
+        navigationItem.rightBarButtonItem = pauseButton
+    }
+    
+    
 }
