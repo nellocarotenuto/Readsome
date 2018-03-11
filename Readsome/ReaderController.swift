@@ -85,7 +85,6 @@ class ReaderController : UIViewController, AVSpeechSynthesizerDelegate {
         
         textView.attributedText = attributedString
         
-        
         // Prepare the text-to-speech component
         volume = preferences.float(forKey : "volume")
         pitch = preferences.float(forKey : "pitch")

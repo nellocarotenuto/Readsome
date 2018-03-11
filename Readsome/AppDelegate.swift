@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -54,6 +55,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if rate == 0 {
             preferences.set(0.15, forKey : "rate")
+        }
+        
+        // Make audio audible even in silent mode
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        }
+        catch {
+            print("Error: unable to make audio audible in silent mode")
         }
         
         return true
