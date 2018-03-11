@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rate = preferences.float(forKey : "rate")
         
         if rate == 0 {
-            preferences.set(0.15, forKey : "rate")
+            preferences.set(0.5, forKey : "rate")
         }
         
         // Make audio audible even in silent mode
